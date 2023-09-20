@@ -9,7 +9,7 @@
     box-sizing: border-box;
     text-align: center;
     font-size: 1.1rem;
-    font-family: cursive;
+    font-family: 'ubuntu', cursive;
     transition: 0.15s;
 }
 
@@ -35,7 +35,7 @@ body{
 }
 
 table{
-    min-width: 50%;
+    min-width: 55%;
     max-width: 100%;
     padding: 10px;
     /* border: 1px rgba(255, 192, 203, 0.603) solid; */
@@ -54,7 +54,11 @@ caption{
 }
 
 caption:hover{
-    letter-spacing: 0.75rem;
+    text-shadow: 1px 2px 3px rgb(141, 35, 21),
+        20rem 0 1px rgb(248, 193, 110),
+        -20rem 0 1px rgb(248, 193, 110)
+    ;
+    letter-spacing: 0.65rem;
 }
 
 td{
@@ -65,6 +69,11 @@ td{
 
 thead > tr > td{
     background: rgba(133, 18, 37, var(--opacity));
+}
+
+
+thead > tr > td:hover{
+    letter-spacing: 0.5rem;
 }
 
 tbody > tr > td:nth-child(1){
@@ -107,4 +116,9 @@ tfoot{
 td:hover{
     background: rgba(88, 24, 34, 0.863);
     color: rgb(255, 255, 255);
+}
+
+td span{
+    display: block;
+    font-size: 0.8rem;
 }
