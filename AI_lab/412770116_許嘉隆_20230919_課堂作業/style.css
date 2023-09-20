@@ -55,8 +55,8 @@ caption{
 
 caption:hover{
     text-shadow: 1px 2px 3px rgb(141, 35, 21),
-        20rem 0 1px rgb(248, 193, 110),
-        -20rem 0 1px rgb(248, 193, 110)
+        20rem 0 1px rgba(248, 110, 110, 0.842),
+        -20rem 0 1px rgba(248, 193, 110, 0.767)
     ;
     letter-spacing: 0.65rem;
 }
