@@ -10,7 +10,8 @@
 
 body{
     /* background: linear-gradient(125deg, rgb(255, 255, 243), rgb(232, 222, 241), rgb(255, 252, 227)); */
-    background-image: url(./bg1.jpg);
+    background-image: url(./bg2.jpg);
+    /* background-position: 0% 0%; */
     background-size: cover;
     color: rgba(255, 255, 255, 0.884);
 
@@ -32,12 +33,13 @@ table{
     /* border: 1px rgba(255, 192, 203, 0.603) solid; */
     border-collapse: collapse;
     border-radius: 15px;
-    /* backdrop-filter: invert(20%); */
+    backdrop-filter: blur(0px);
 }
 
 caption{
     font-size: 1.2rem;
-    color: rgba(255, 251, 251, 0.884);
+    color: rgba(253, 217, 217, 0.932);
+    text-shadow: 1px 1px 3px rgb(12, 12, 11);
     margin: 10px;
 }
 
@@ -48,7 +50,7 @@ td{
 }
 
 thead > tr > td{
-    background: rgba(133, 18, 37, 0.801);
+    background: rgba(133, 18, 37, 0.901);
 }
 
 tbody > tr > td:nth-child(1){
@@ -61,12 +63,12 @@ tbody > tr > td:nth-child(n+2){
 }
 
 tbody > tr:nth-child(2n){
-    background: rgba(249, 255, 232, 0.801);
+    background: rgba(249, 255, 232, 0.91);
     color: rgb(53, 45, 45);
 }
 
 tbody > tr:nth-child(2n+1){
-    background: rgba(243, 216, 198, 0.795);
+    background: rgba(243, 216, 198, 0.95);
     color: rgb(56, 56, 56);
 }
 
