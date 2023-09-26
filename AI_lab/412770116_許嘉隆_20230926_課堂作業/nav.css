@@ -13,7 +13,7 @@
 :root {
     --primary: rgb(129, 40, 40);
     --radius:0.875em;
-    --color: #1e2466;
+    --underscore: #662613;
     font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
 }
 
@@ -37,6 +37,21 @@
 body{
     overflow-x: hidden;
 }
+
+
+.animated{
+    transition:background-size 0.3s;
+    background: linear-gradient(transparent 0%, transparent 90%,var(--underscore) 90%, var(--underscore) 100% );
+
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+}
+.animated:hover{
+    background-size: 100% 100%;
+    background-position-x: left;
+}
+
 
 .container{
     width: 100vw;
