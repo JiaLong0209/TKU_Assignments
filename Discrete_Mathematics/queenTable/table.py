@@ -121,7 +121,7 @@ class Game():
         while (self.isPlay):
             input_x = input_y = None
 
-            # Check input-x and input-y is a empty string
+            # Check whether input-x and input-y are empty strings
             while (not input_x):
                 self.printText('Enter the x of queen: ', 0.01, end='')
                 input_x = input()
@@ -134,25 +134,27 @@ class Game():
             y = int(input_y)
             self.isPlay = self.step(x, y)
 
-
+    
     def step(self, x=0, y=0):
         if (self.table.put(x, y)):
             self.queens += 1
         else:
             input()
-        self.rounds += 1
 
+        self.rounds += 1
         self.table.show()
         self.validCells = self.getValidCells()
         print('{:^15}'.format(f'Queens: {self.queens}'), end='')
         print('{:^15}'.format(f'Valid Cells: {self.validCells}'), end='')
         print('{:^15}'.format(f'Rounds: {self.rounds}'), end='\n\n')
 
+        # The number of queens on the table >= the size of table implies the player wins.
         if (self.queens >= self.table.size):
-            return self.restart(True)
+            return self.restart(isWin=True)
 
+        # The number of valid cells = 0 implies the player loss
         if (self.validCells == 0):
-            return self.restart(False)
+            return self.restart(isWin=False)
 
         return True
 
@@ -161,7 +163,7 @@ class Game():
         validCells = 0
         for i in range(self.table.size):
             for j in range(self.table.size):
-                if(self.table.isValid(j,i,False) and (self.table.array[i][j] != 1)): validCells += 1
+                if(self.table.isValid(row=i, column=j, printError=False) and (self.table.array[i][j] != 1)): validCells += 1
                 
         return validCells
 
@@ -201,6 +203,15 @@ class Game():
         self.queens = 0
         self.rounds = 0
 
+    """
+    Comment Template
+    test_function does blah blah blah.
+
+    :param p1: describe about parameter p1
+    :param p2: describe about parameter p2
+    :param p3: describe about parameter p3
+    :return: describe what it returns
+    """ 
 
 
 game = Game()
