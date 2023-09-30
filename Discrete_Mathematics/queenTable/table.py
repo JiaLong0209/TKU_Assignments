@@ -11,7 +11,7 @@ class Table:
         return np.array([[-1] * column] * row)
 
     def show(self):
-        print('\n{:^30}'.format("Table"), end='\n\n')
+        print('\n{:^40}'.format("Queen's Table"), end='\n\n')
         for n in range(self.size+1):
             if (n):
                 print('{:^5}'.format(n), end='')
@@ -31,23 +31,33 @@ class Table:
         print('{:^10}'.format('(y)'), end='\n\n')
 
     def symbol(self, n):
-        return 'o' if n == 1 else '.'
+        return 'o' if n == 1 else '-'
 
     def checkLineValid(self, column, row):
         table = self.table
         valid = True
-        for rowIndex, rowArray in enumerate(table):
-            for columnIndex, value in enumerate(rowArray):
+        for i, rowArray in enumerate(table):
+            for j, value in enumerate(rowArray):
                 # check rows
-                if (value == 1 and rowIndex == row and columnIndex != column):
-                    print(
-                        f"Error y (row): The position ({columnIndex+1},{rowIndex+1}) has a queen.")
+                if (value == 1 and i == row and j != column):
+                    print(f"Error y (row): The position ({j+1},{i+1}) has a queen.")
                     valid = False
 
                 # check columns
-                if (value == 1 and columnIndex == column and rowIndex != row):
-                    print(
-                        f"Error x (column): The position ({columnIndex+1},{rowIndex+1}) has a queen.")
+                if (value == 1 and j == column and i != row):
+                    print(f"Error x (column): The position ({j+1},{i+1}) has a queen.")
+                    valid = False
+
+                # check right diagonal  /    i + j = i' + j'
+                # The second De Morgan's laws: ¬p∧¬q ≡ ¬(p∨q) 
+                # not row == i and not column == j ≡ not(row == i or column == j) 
+                if(value == 1 and (row + column == i + j) and not(row == i or column == j)):
+                    print(f"Error x or y (right-diagonal): The position ({j+1},{i+1}) has a queen.")
+                    valid = False
+
+                # check left diagonal   \    i - i' = j - j'
+                if(value == 1 and (row - i == column - j) and not(row == i or column == j)):
+                    print(f"Error x or y (left-diagonal): The position ({j+1},{i+1}) has a queen.")
                     valid = False
 
         return valid
@@ -67,8 +77,7 @@ class Table:
             print("Error x and y: This cell already has a queen.")
         else:
             # check if the entire line is valid
-            if (self.checkLineValid(column, row)):
-                return True
+            if (self.checkLineValid(column, row)): return True
 
         return False
 
@@ -86,7 +95,8 @@ class Table:
 
 class Game():
     def __init__(self):
-        self.round = 0
+        self.queens = 0
+        self.rounds = 0
         self.table = []
         self.isPlay = False
 
@@ -121,14 +131,16 @@ class Game():
 
     def step(self, x=0, y=0):
         if (self.table.put(x, y)):
-            self.round += 1
+            self.queens += 1
         else:
             input()
+        self.rounds += 1
 
         self.table.show()
-        print('{:^40}'.format(f'Round: {self.round}'), end='\n\n')
+        print('{:^20}'.format(f'Queens: {self.queens}'), end='')
+        print('{:^20}'.format(f'Rounds: {self.rounds}'), end='\n\n')
 
-        if (self.round >= self.table.size):
+        if (self.queens >= self.table.size):
             return self.restart()
 
         return True
@@ -142,11 +154,11 @@ class Game():
 
         answer = input().lower()
         if(answer == 'y'):
-            self.printText("Great!",0.2,end='')
+            self.printText("Great!",0.05,end='')
             time.sleep(2)
             print('   （๑ • ‿ • ๑ ）')
             time.sleep(1)
-            self.table.clear()
+            self.reset()
             self.start()
         elif(answer == 'n'):
             self.printText("...\n", 1)
@@ -158,6 +170,12 @@ class Game():
             time.sleep(2)
 
         return False
+
+    def reset(self):
+        self.table.clear()
+        self.queens = 0
+        self.rounds = 0
+
 
 
 game = Game()
