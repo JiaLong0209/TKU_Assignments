@@ -11,14 +11,12 @@ class Table:
         """
         Create a new table.
         """
-
         return np.array([[-1] * column] * row)
 
     def show(self):
         """
         Show the table.
         """
-
         print('\n{:^40}'.format("Queen's Table"), end='\n\n')
         for n in range(self.size+1):
             if (n):
@@ -42,7 +40,6 @@ class Table:
         """
         Return the sign of -1 and 1, must be str
         """
-
         # Queens are represented by the number 1, empty cells by -1.
         return 'o' if n == 1 else '-'
 
@@ -52,9 +49,8 @@ class Table:
         column: this parameter is the index (x) of the table
         row: this parameter is the index (y) of the table
         printError: whether to print the error messages when checking the position, must be boolean
-        return: must be boolean
+        return: True if the position is valid, False otherwise
         """
-
         table = self.array
         valid = True
         for i, rowArray in enumerate(table):
@@ -97,9 +93,8 @@ class Table:
         column: this parameter is the index (x) of the table
         row: this parameter is the index (y) of the table
         printError: whether to print the error messages when checking the position, must be boolean
-        return: must be boolean
+        return: True if the position is valid, False otherwise
         """
-
         table = self.array
 
         if (not printError):
@@ -122,14 +117,13 @@ class Table:
 
         return False
 
-    def put(self, x, y):
+    def place(self, x, y):
         """
-        Put the queen on the x and y.
+        Place the queen on the x and y.
         x: this parameter is the x of the table, not the index
         y: this parameter is the y of the table, not the index
-        return: whether this put is successful, must be boolean
+        return: True if this placement is successful, False otherwise
         """
-
         column, row = x-1, y-1
         if (self.isValid(column, row)):
             self.array[row][column] = 1
@@ -156,7 +150,6 @@ class Game():
         """
         Print the string character by character.
         """
-
         for i in str:
             # print each character by the delta time
             time.sleep(delta)
@@ -167,7 +160,6 @@ class Game():
         """
         Control the entire game process.
         """
-
         self.printText("Enter the table size: ", end='')
         self.table = Table(int(input()))
         self.table.show()
@@ -195,9 +187,8 @@ class Game():
         Control the process of a round.
         return: whether the game continues, must be boolean
         """
-
         # Check whether the position is valid
-        if (self.table.put(x, y)):
+        if (self.table.place(x, y)):
             self.queens += 1
         else:
             # Use input() function to let the player check what is wrong with the position
@@ -226,7 +217,6 @@ class Game():
         """
         Return the remaining valid cells on the table, must be int.
         """
-
         validCells = 0
         for i in range(self.table.size):
             for j in range(self.table.size):
@@ -240,7 +230,6 @@ class Game():
         Restart the game.
         isWin: whether the player wins, must be boolean
         """
-
         if (isWin):
             self.printText(
                 "Congratulations! You win the game!!!", 0.04, end='')
@@ -266,7 +255,6 @@ class Game():
         """
         Reply the player's answer.
         """
-
         if (answer == 'y'):
             self.printText("Great!", 0.05, end='')
             time.sleep(2)
