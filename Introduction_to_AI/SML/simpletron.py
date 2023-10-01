@@ -32,8 +32,14 @@ class Simpletron():
         self.stop = False
         
     def Read(self):
-        self.printText(f'Enter a number in the address {self.format_two_ditital(self.operand)}: ', 0.02 ,end='')
-        self.memory[self.operand] = self.format(int(input()))
+        self.printText(f'Enter a number into memory address {self.format_two_ditital(self.operand)}: ', 0.02 ,end='')
+        input_value = input()
+
+        while(not input_value):
+            self.printText(f'Enter a number into memory address {self.format_two_ditital(self.operand)}: ', 0.02 ,end='')
+            input_value = input()
+
+        self.memory[self.operand] = self.format(int(input_value))
 
     def Write(self):
         self.printText(f'The value of memory address {self.format_two_ditital(self.operand)} is {int(self.memory[self.operand])}', 0.02)
@@ -89,6 +95,9 @@ class Simpletron():
         4. Execution
         """
         while(not self.stop):
+            self.show()
+            input("Press 'Enter' key to continue...")
+
             # Fetch Instruction
             self.IR = self.memory[self.counter]
 
@@ -97,13 +106,17 @@ class Simpletron():
             self.execute_by_step()
             
             # Show the information
-            self.show()
-            input()
 
             # Increasement Counter
             self.counter += 1
 
-        self.printText(f'\n\nReturn: {self.ACC}', 0.04)
+
+        self.show()
+        input("Press 'Enter' key to continue...")
+
+        self.printText(f'\nThis is the end of the process.', 0.04)
+        time.sleep(0.5)
+        self.printText(f'Accumulator: {self.ACC}', 0.04)
         time.sleep(1.5)
         self.printText('(｡・ω・｡)')
 
@@ -143,7 +156,7 @@ class Simpletron():
 
         self.printText('{:>30}'.format(''), end='',slow_mode=True)
         self.printText('{:>10}'.format(''), end='',slow_mode=True)
-        for i in range(self.memory_size // 10):
+        for i in range(10):
             self.printText('{:>7}'.format(i), end='',slow_mode=True)
         self.printText(slow_mode=True)
 
@@ -169,7 +182,7 @@ class Simpletron():
         self.printText(slow_mode=True)
         return self
     
-    def printText(self, str = '', delta=0.000, end='\n', slow_mode=True):
+    def printText(self, str = '', delta=0.0001, end='\n', slow_mode=True):
         """
         Print the string character by character.
         """
@@ -195,8 +208,7 @@ def readFile(path):
 path = 'sample.txt'
 code = readFile(path)
 
-simpletron = Simpletron(100)
+simpletron = Simpletron()
 simpletron.load_code(code)
-simpletron.show()
 simpletron.execute()
 
