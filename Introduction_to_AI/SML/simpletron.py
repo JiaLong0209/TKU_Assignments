@@ -95,6 +95,7 @@ class Simpletron():
         4. Execution
         """
         while(not self.stop):
+            # Show the information
             self.show()
             input("Press 'Enter' key to continue...")
 
@@ -104,8 +105,6 @@ class Simpletron():
             # Decode and Execution
             self.decode(self.IR)
             self.execute_by_step()
-            
-            # Show the information
 
             # Increasement Counter
             self.counter += 1
@@ -136,7 +135,6 @@ class Simpletron():
     def format(self, num):
         if(num == 0): return '+0000'
         if(num > 0):
-            sign = '+'
             return f'+{format(num,"04")}'
         else:
             return f'{format(num,"05")}'
