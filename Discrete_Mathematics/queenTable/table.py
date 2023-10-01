@@ -9,14 +9,14 @@ class Table:
 
     def createTable(self, row, column):
         """
-        This function creates a new table.
+        Create a new table.
         """
 
         return np.array([[-1] * column] * row)
 
     def show(self):
         """
-        This function shows the table.
+        Show the table.
         """
 
         print('\n{:^40}'.format("Queen's Table"), end='\n\n')
@@ -40,15 +40,15 @@ class Table:
 
     def symbol(self, n):
         """
-        This function returns the sign of -1 and 1.
-        return: must be str
+        Return the sign of -1 and 1, must be str
         """
 
+        # Queens are represented by the number 1, empty cells by -1.
         return 'o' if n == 1 else '-'
 
     def checkLineValid(self, column, row, printError=True):
         """
-        This function checks if this position is valid by the entire lines (rows, columns, and diagonals).
+        Check if this position is valid by the entire lines (rows, columns, and diagonals).
         column: this parameter is the index (x) of the table
         row: this parameter is the index (y) of the table
         printError: whether to print the error messages when checking the position, must be boolean
@@ -93,7 +93,7 @@ class Table:
 
     def isValid(self, column, row, printError=True):
         """
-        This function whether this position is valid.
+        Check if this position is valid.
         column: this parameter is the index (x) of the table
         row: this parameter is the index (y) of the table
         printError: whether to print the error messages when checking the position, must be boolean
@@ -124,7 +124,7 @@ class Table:
 
     def put(self, x, y):
         """
-        This function puts the queen on the x and y.
+        Put the queen on the x and y.
         x: this parameter is the x of the table, not the index
         y: this parameter is the y of the table, not the index
         return: whether this put is successful, must be boolean
@@ -139,7 +139,7 @@ class Table:
 
     def clear(self):
         """
-        This function creates a new table to clear the table.
+        Create a new table to clear the table.
         """
         self.array = self.createTable(self.size, self.size)
 
@@ -154,7 +154,7 @@ class Game():
 
     def printText(self, str, delta=0.02, end='\n'):
         """
-        This function prints the string character by character.
+        Print the string character by character.
         """
 
         for i in str:
@@ -165,7 +165,7 @@ class Game():
 
     def start(self):
         """
-        This function controls the entire game process.
+        Control the entire game process.
         """
 
         self.printText("Enter the table size: ", end='')
@@ -177,7 +177,7 @@ class Game():
         while (self.isPlay):
             input_x = input_y = None
 
-            # Check whether input-x and input-y are empty strings
+            # Check if input-x and input-y are empty strings
             while (not input_x):
                 self.printText('Enter the x of queen: ', 0.01, end='')
                 input_x = input()
@@ -192,7 +192,7 @@ class Game():
 
     def step(self, x=0, y=0):
         """
-        This function controls the process of a round.
+        Control the process of a round.
         return: whether the game continues, must be boolean
         """
 
@@ -224,8 +224,7 @@ class Game():
 
     def getValidCells(self):
         """
-        This function return the remaining valid cells on the table.
-        return: the number of valid cells, must be int
+        Return the remaining valid cells on the table, must be int.
         """
 
         validCells = 0
@@ -238,7 +237,7 @@ class Game():
 
     def restart(self, isWin):
         """
-        This function restarts the game.
+        Restart the game.
         isWin: whether the player wins, must be boolean
         """
 
@@ -257,15 +256,15 @@ class Game():
         while(not answer):
             self.printText(
                 "\nDo you want to restart the game? (y/n): ", 0.01,  end='')
-            print("◢▆▅▄▃ (╯°Д°)╯┻━━━━━━━━━━┻ ▃▄▅▆◣")
+            print("(´;ω;`)")
             answer = input().lower()
 
-        self.checkAnswer(answer)
+        self.replyAnswer(answer)
 
 
-    def checkAnswer(self, answer):
+    def replyAnswer(self, answer):
         """
-        This function checks the player's answer.
+        Reply the player's answer.
         """
 
         if (answer == 'y'):
@@ -287,7 +286,7 @@ class Game():
 
     def reset(self):
         """
-        This function resets the variables value.
+        Reset the value of variables.
         """
         self.table.clear()
         self.queens = 0
