@@ -1,3 +1,11 @@
+
+:root {
+    --primary: rgb(129, 40, 40);
+    --radius:0.875em;
+    --underscore: #662613;
+    font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -6,15 +14,8 @@
     font-family: sans-serif;
     scroll-behavior: smooth;
     transition: 0.2s;
-    cursor: url(image/cursor.cur), auto !important;
+    cursor: url(image/cursor.cur), auto ;
     
-}
-
-:root {
-    --primary: rgb(129, 40, 40);
-    --radius:0.875em;
-    --underscore: #662613;
-    font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
 }
 
 /* 捲軸底色 */
@@ -92,6 +93,7 @@ body{
 .navigation ul li a:hover{
     color: #333;
     background: #fff;
+    cursor: pointer;
 }
 
 .section{
@@ -101,9 +103,17 @@ body{
 }
 
 .section .title{
-    color: #333;
-    margin: 10px;
+    display: inline-block;
+    margin-bottom: 30px;
     margin-top: 20px;
+}
+
+.section .title a:hover{
+    cursor: pointer;
+}
+
+.section .title a{
+    color: var(--primary)
 }
 
 .section .imgBox{
@@ -114,15 +124,26 @@ body{
 }
 
 .section .imgBox img{
-    width: 100%;
+    width: 90%;
     object-fit: contain;
-    margin: 20px;
+    margin: 40px;
     border-radius: 30px;
     box-shadow: 3px 3px 15px rgba(78, 18, 18, 0.658);
 }
 
 .section .imgBox img:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
+}
+
+.introduction{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.introduction ul li{
+    list-style:outside;
+    text-align: left;
 }
 
 .footer{
