@@ -1,9 +1,11 @@
 
 :root {
     --primary: rgb(129, 40, 40);
+    --primary-opactiy: rgba(129, 40, 40, 0.808);
     --radius:0.875em;
     --underscore: #662613;
-    font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+    --nagivator-border-size: 5px;
+    --nagivator-padding: 7px;
 }
 
 *{
@@ -11,7 +13,7 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-    font-family: sans-serif;
+    font-family: 'ubuntu' ,sans-serif;
     scroll-behavior: smooth;
     transition: 0.2s;
     cursor: url(image/cursor.cur), auto ;
@@ -39,6 +41,9 @@ body{
     overflow-x: hidden;
 }
 
+a:hover{
+    cursor: pointer;
+}
 
 .animated{
     transition:background-size 0.3s;
@@ -64,8 +69,11 @@ body{
 
 .navigation{
     width: 100vw;
-    background: var(--primary);
+    background: var(--primary-opactiy);
+    position: absolute;
+    top: 0;
     /* position: fixed; */
+    border-bottom: var(--navigator-border-size) solid rgba(252, 148, 148, 0.178);
 }
 
 .navigation ul{
@@ -79,6 +87,8 @@ body{
 .navigation ul li {
     /* width: 100%; */
     width: 10vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .navigation ul li a {
@@ -86,30 +96,48 @@ body{
     /* background: #f25; */
     text-align: center;
     color: #fff;
-    padding: 3px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    padding: var(--nagivator-padding) 0;
 }
 
 .navigation ul li a:hover{
     color: #333;
     background: #fff;
-    cursor: pointer;
+}
+
+.navigation ul li a::after{
+    content: '';
+    display: block;
+    margin: auto;
+    width: 0%;
+    background: #ffffff;
+    position: relative;
+    top: var(--nagivator-padding);
+    height: 3px;
+    transition: 0.4s;
+}
+
+.navigation ul li a:hover::after{
+    background: var(--primary-opactiy);
+    width: 100%;
 }
 
 .section{
     text-align: center;
     margin: 10px;
-    width: 80%;
+    width: 75%;
+    font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+
+.section:nth-child(2){
+    margin-top: 50px;
 }
 
 .section .title{
+    font-size: 1.8rem;
     display: inline-block;
     margin-bottom: 30px;
     margin-top: 20px;
-}
-
-.section .title a:hover{
-    cursor: pointer;
 }
 
 .section .title a{
@@ -139,17 +167,29 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #444;
 }
 
-.introduction ul li{
+.introduction ul, .introduction ol{
+    margin: 10px;
+}
+
+.introduction ul > li{
+    margin-left: 3rem;
     list-style:outside;
     text-align: left;
+}
+
+.introduction ol > li{
+    margin-left: 3rem;
+    list-style: decimal;
 }
 
 .footer{
     width: 100vw;
     text-align: center;
     background: var(--primary);
+    margin-top: 20px;
 }
 
 .footer span{
