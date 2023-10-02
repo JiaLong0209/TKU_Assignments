@@ -32,17 +32,17 @@ class Simpletron():
         self.stop = False
         
     def Read(self):
-        self.printText(f'Enter a number into memory address {self.format_two_ditital(self.operand)}: ', 0.02 ,end='')
+        self.printText(f'Enter a number into memory address {self.format_two_digital(self.operand)}: ', 0.02 ,end='')
         input_value = input()
 
         while(not input_value):
-            self.printText(f'Enter a number into memory address {self.format_two_ditital(self.operand)}: ', 0.02 ,end='')
+            self.printText(f'Enter a number into memory address {self.format_two_digital(self.operand)}: ', 0.02 ,end='')
             input_value = input()
 
         self.memory[self.operand] = self.format(int(input_value))
 
     def Write(self):
-        self.printText(f'The value of memory address {self.format_two_ditital(self.operand)} is {int(self.memory[self.operand])}', 0.02)
+        self.printText(f'The value of memory address {self.format_two_digital(self.operand)} is {int(self.memory[self.operand])}', 0.02)
         input()
 
     def Load(self):
@@ -129,7 +129,7 @@ class Simpletron():
         self.operation_set[str(self.operation_code)]()
         return self
 
-    def format_two_ditital(self, num):
+    def format_two_digital(self, num):
         return format(num, '02')
 
     def format(self, num):
@@ -143,10 +143,10 @@ class Simpletron():
         # Registers
         Registers = '{:30}'.format("Registers:")
         Accumulator = '{:20}'.format('Accumulator')+'{:>10}'.format((self.ACC))
-        Instruction_Counter = '{:20}'.format('Instruction Counter')+'{:>10}'.format(self.format_two_ditital(self.counter))
+        Instruction_Counter = '{:20}'.format('Instruction Counter')+'{:>10}'.format(self.format_two_digital(self.counter))
         Instruction_Register ='{:20}'.format('Instruction Register')+'{:>10}'.format(self.format(int(self.IR)))
-        Operation_Code = '{:20}'.format('Operation Code')+'{:>10}'.format(self.format_two_ditital(self.operation_code))
-        Operand = '{:20}'.format('Operand')+'{:>10}'.format(self.format_two_ditital(self.operand))
+        Operation_Code = '{:20}'.format('Operation Code')+'{:>10}'.format(self.format_two_digital(self.operation_code))
+        Operand = '{:20}'.format('Operand')+'{:>10}'.format(self.format_two_digital(self.operand))
         registers_info = [Registers,'{:30}'.format(''),Accumulator, Instruction_Counter, Instruction_Register, Operation_Code, Operand]
  
         # Memory
