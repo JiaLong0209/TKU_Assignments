@@ -18,11 +18,15 @@ class BoxGenerator{
         return this;
     }
 
-    fillScreen(){
+    fillScreen(delta = 40){
         let screenArea = innerHeight * innerWidth;
         let count = ~~ (screenArea / this.area);
         for(let i = 0; i < count; i++){
-            this.create();
+            setTimeout(() => {
+                this.create();
+            }, i * delta)
+            
+            // }
         }
     }
     
@@ -39,10 +43,13 @@ function showTime(){
     let y = currentDate.getFullYear();
     let m = currentDate.getMonth()+1;
     let d = currentDate.getDate();
-    
+    m = m ? Number(m) >= 10 : `0${m}`;
+    d = d ? Number(d) >= 10 : `0${d}`;
     console.log(y);
     console.log(m);
     console.log(d);
+
+    time.textContent = `${y}-${m}-${d}`;
     
 }
 
