@@ -2,6 +2,7 @@ import time
 
 class Simpletron():
     def __init__(self, memory_size = 100):
+        self.stop = False
         # Instruction Register
         self.IR = '+0000'
         self.counter = 0
@@ -29,7 +30,6 @@ class Simpletron():
             '42': self.BranchZero,
             '43': self.Halt
         }
-        self.stop = False
         
     def Read(self):
         self.printText(f'Enter a number into memory address {self.format_two_digital(self.operand)}: ', 0.01 ,end='')
@@ -134,11 +134,13 @@ class Simpletron():
         return self
 
     def reset(self):
+        self.stop = False
         self.IR = '+0000'
         self.counter = 0
         self.ACC = '+0000'
         self.operation_code = 0
         self.operand = 0
+        self.memory = self.initialize_memory()
 
     def format_two_digital(self, num):
         return format(num, '02')
@@ -224,10 +226,11 @@ def executeCodeByPath(path):
 simpletron = Simpletron()
 path = input('Enter file path: ')
 
-while(path != 'q' or path != 'quit'):
+while(True):
     
     while(path == ''):
         path = input('Next file path (enter "q" can quit): ')
     executeCodeByPath(path)
     path = input('Next file path (enter "q" can quit): ')
+    if(path == 'q' or path == 'quit' ): break
 
