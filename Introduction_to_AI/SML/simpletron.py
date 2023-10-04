@@ -117,6 +117,7 @@ class Simpletron():
         self.printText(f'\nThis is the end of the process.', 0.04)
         time.sleep(0.5)
         self.printText(f'Accumulator: {self.ACC}', 0.04)
+        self.printText(f'Int: {int(self.ACC)}', 0.04)
         time.sleep(1.5)
         self.printText('(｡・ω・｡)')
 
