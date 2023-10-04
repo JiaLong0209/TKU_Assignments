@@ -64,13 +64,13 @@ class Simpletron():
         self.ACC = self.format(int(self.ACC) * int(self.memory[self.operand]))
 
     def Branch(self):
-        pass
+        self.counter = self.operand
 
     def BranchNeg(self):
-        pass
+        if(int(self.ACC) < 0 ): self.counter = self.operand
 
     def BranchZero(self):
-        pass
+        if(int(self.ACC) == 0): self.counter = self.operand
 
     def Halt(self):
         self.stop = True
@@ -102,12 +102,13 @@ class Simpletron():
             # Fetch Instruction
             self.IR = self.memory[self.counter]
 
+            # Increasement Counter
+            self.counter += 1
+
             # Decode and Execution
             self.decode(self.IR)
             self.execute_by_step()
 
-            # Increasement Counter
-            self.counter += 1
 
 
         self.show()
@@ -203,10 +204,19 @@ def readFile(path):
     f.close()
     return lines
 
-path = 'sample.txt'
-code = readFile(path)
+def executeCodeByPath(path):
+    code = readFile(path)
+    simpletron.load_code(code)
+    simpletron.execute()
+    
 
 simpletron = Simpletron()
-simpletron.load_code(code)
-simpletron.execute()
+path = input('Enter the file path: ')
+
+while(path != 'q' or path != 'quit'):
+    
+    while(path == ''):
+        path = input('Next the file path (enter "q" can quit): ')
+    executeCodeByPath(path)
+    path = input('Next the file path (enter "q" can quit): ')
 
