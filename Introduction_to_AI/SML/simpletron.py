@@ -32,17 +32,17 @@ class Simpletron():
         self.stop = False
         
     def Read(self):
-        self.printText(f'Enter a number into memory address {self.format_two_digital(self.operand)}: ', 0.02 ,end='')
+        self.printText(f'Enter a number into memory address {self.format_two_digital(self.operand)}: ', 0.01 ,end='')
         input_value = input()
 
         while(not input_value):
-            self.printText(f'Enter a number into memory address {self.format_two_digital(self.operand)}: ', 0.02 ,end='')
+            self.printText(f'Enter a number into memory address {self.format_two_digital(self.operand)}: ', 0.01 ,end='')
             input_value = input()
 
         self.memory[self.operand] = self.format(int(input_value))
 
     def Write(self):
-        self.printText(f'The value of memory address {self.format_two_digital(self.operand)} is {int(self.memory[self.operand])}', 0.02)
+        self.printText(f'The value of memory address {self.format_two_digital(self.operand)} is {int(self.memory[self.operand])}', 0.01)
         input()
 
     def Load(self):
@@ -83,7 +83,8 @@ class Simpletron():
 
     def load_code(self, code):
         for index, text in enumerate(code):
-            code = int(text.replace('\n','').replace(' ',''))
+            if(text.replace('\n','').replace(' ','') == ''): continue
+            code = int(text.replace('\n','').replace(' ','')[0:4])
             self.memory[index] = self.format(code)
 
     def execute(self):
@@ -114,12 +115,13 @@ class Simpletron():
         self.show()
         input("Press 'Enter' key to continue...")
 
-        self.printText(f'\nThis is the end of the process.', 0.04)
+        self.printText(f'\nThis is the end of the process.', 0.03)
         time.sleep(0.5)
-        self.printText(f'Accumulator: {self.ACC}', 0.04)
-        self.printText(f'Int: {int(self.ACC)}', 0.04)
-        time.sleep(1.5)
+        self.printText(f'Accumulator: {self.ACC}', 0.03)
+        self.printText(f'Int: {int(self.ACC)}', 0.03)
+        time.sleep(1)
         self.printText('(｡・ω・｡)')
+        self.reset()
 
 
     def decode(self, code):
@@ -130,6 +132,13 @@ class Simpletron():
     def execute_by_step(self):
         self.operation_set[str(self.operation_code)]()
         return self
+
+    def reset(self):
+        self.IR = '+0000'
+        self.counter = 0
+        self.ACC = '+0000'
+        self.operation_code = 0
+        self.operand = 0
 
     def format_two_digital(self, num):
         return format(num, '02')
@@ -143,6 +152,7 @@ class Simpletron():
 
     def show(self):
         # Registers
+        counter_symbol = '|'
         Registers = '{:30}'.format("Registers:")
         Accumulator = '{:20}'.format('Accumulator')+'{:>10}'.format((self.ACC))
         Instruction_Counter = '{:20}'.format('Instruction Counter')+'{:>10}'.format(self.format_two_digital(self.counter))
@@ -160,9 +170,9 @@ class Simpletron():
             self.printText('{:>7}'.format(i), end='',slow_mode=True)
         self.printText(slow_mode=True)
 
-        for index, code in enumerate(self.memory):
+        for index, instruction in enumerate(self.memory):
             if((index+1) % 10 == 0):
-                self.printText('{:>7}'.format(code),slow_mode=True)
+                self.printText('{:>7}'.format(f'{counter_symbol if self.counter == index else ""}{instruction}'),slow_mode=True)
                 if(index+1 == len(self.memory)): continue
 
                 # Print the registers_info 
@@ -177,7 +187,7 @@ class Simpletron():
                 if(index == 0): 
                     self.printText('{:>30}'.format(''), end='',slow_mode=True)
                     self.printText('{:>10}'.format((index) // 10), end='',slow_mode=True)
-                self.printText('{:>7}'.format(code), end='',slow_mode=True)
+                self.printText('{:>7}'.format(f'{counter_symbol if self.counter == index else ""}{instruction}'), end='',slow_mode=True)
             
         self.printText(slow_mode=True)
         return self
@@ -212,12 +222,12 @@ def executeCodeByPath(path):
     
 
 simpletron = Simpletron()
-path = input('Enter the file path: ')
+path = input('Enter file path: ')
 
 while(path != 'q' or path != 'quit'):
     
     while(path == ''):
-        path = input('Next the file path (enter "q" can quit): ')
+        path = input('Next file path (enter "q" can quit): ')
     executeCodeByPath(path)
-    path = input('Next the file path (enter "q" can quit): ')
+    path = input('Next file path (enter "q" can quit): ')
 
