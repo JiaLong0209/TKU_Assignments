@@ -180,12 +180,12 @@ class Game():
 
             x = int(input_x)
             y = int(input_y)
-            self.isPlay = self.step(x, y)
+            self.isPlay = self.playRound(x, y)
 
-    def step(self, x=0, y=0):
+    def playRound(self, x=0, y=0):
         """
         Control the process of a round.
-        return: whether the game continues, must be boolean
+        return: True if the game continues, False otherwise
         """
         # Check whether the position is valid
         if (self.table.place(x, y)):
