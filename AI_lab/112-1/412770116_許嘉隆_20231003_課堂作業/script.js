@@ -1,12 +1,11 @@
 
 class BoxGenerator {
-    constructor(size = 20, color = '#fff', randomColor = false, deltaTime = 10, parents = content) {
+    constructor(size = 20, color = '#fff', deltaTime = 10, parents = content) {
         this.size = size;
         this.color = color;
         this.parents = parents;
         this.deltaTime = deltaTime;
         this.boxList = [];
-        this.randomColor = randomColor;
         this.isActiveChangeColor = false;
         console.log(this)
     }
@@ -44,11 +43,12 @@ class BoxGenerator {
                 if (randomColor) {
                     this.create(this.getRandomColor(), false);
                 } else {
-                    this.create(this.hsl((randomHue + this.count * 1) % 360, 60, 60), false);
+                    this.create(this.hsl((randomHue + this.count * 1.25) % 360, 60, 60), false);
                 }
                 this.count -= 1;
             }
         }, delta)
+        
         return this;
     }
 
@@ -57,7 +57,7 @@ class BoxGenerator {
         return this;
     }
 
-    changeColor(randomColor = false) {
+    changeColor() {
         this.isActiveChangeColor = !this.isActiveChangeColor;
         if (this.isActiveChangeColor) {
             this.changeColorInterval = setInterval(() => {
@@ -120,7 +120,7 @@ let showTimeBtn = document.querySelector('#showTimeBtn');
 let regenerateBtn = document.querySelector('#regenerateBtn');
 
 function init() {
-    a = new BoxGenerator(boxSize, '#fff', true, 20).fillScreen();
+    a = new BoxGenerator(boxSize, '#fff', 20).fillScreen();
     showTime();
     setInterval(showTime, 1000);
     changeColorBtn.addEventListener('click', () => {
@@ -128,12 +128,15 @@ function init() {
     });
 
     showTimeBtn.addEventListener('click', toggleTime);
+
     regenerateBtn.addEventListener('click', () => {
         a.regenerate();
     });
+
     document.addEventListener('keypress', () => {
         a.regenerate();
     })
+
     randomColorBtn.addEventListener('click', () => {
         a.regenerate(true)
     });
