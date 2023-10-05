@@ -111,7 +111,7 @@ function showTime() {
     time.textContent = isShowTime ? `${y}-${m}-${d} ${String(currentDate).slice(16, 24)}` : '';
 }
 
-let isShowTime = true
+let isShowTime = true;
 let boxSize = (innerWidth / 25) - 0.01;
 let content = document.querySelector('.content');
 let changeColorBtn = document.querySelector('#changeColorBtn');
