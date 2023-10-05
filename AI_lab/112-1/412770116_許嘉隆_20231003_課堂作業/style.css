@@ -58,7 +58,7 @@ body{
 
 .box{
     /* border: 1px solid rgb(39, 39, 39); */
-    /* transition: 0s; */
+    transition: 0s;
     animation: show 2s;
     /* border-radius: 10px; */
 }
