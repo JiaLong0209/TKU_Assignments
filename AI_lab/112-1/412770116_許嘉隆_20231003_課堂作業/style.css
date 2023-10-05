@@ -29,30 +29,75 @@ body{
 
 .btn{
     font-size: 1.2rem;
-    margin: 5px 10px;
+    margin: 10px 20px;
     padding: 5px;
     outline: none;
     border: none;
     border-radius: 10px;
+    color: #333;
+    background: #ffdfdf;
 }
 
 .btn:hover{
-    filter: invert(100%);
+    background: #3d0b0b;
+    color: #d8d8d8;
+    transform: scale(1.2);
+}
+
+.btn:active{
+    box-shadow: 0 0 10px #ee8686;
 }
 
 .time{
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: 1.5rem;
+    color: #c28b8b;
+    text-shadow: 1px 1px 2px rgb(116, 10, 31);
     text-align: center;
     margin: auto;
 }
 
 .box{
-    border: 1px solid #303;
-    /* background: #f35; */
+    /* border: 1px solid rgb(39, 39, 39); */
+    /* transition: 0s; */
+    animation: show 2s;
+    /* border-radius: 10px; */
 }
 
 .box:hover{
-    filter: drop-shadow(0 0 20px rgb(255, 0, 0)) invert(135%);
+    filter: drop-shadow(0 0 30px rgb(24, 24, 24)) invert(135%);
 }
 
+@keyframes show{
+    0%{
+        transform: scale(0) rotate(1turn);
+        opacity: 0;
+    }
+
+    5%{
+        transform: scale(0.1) rotate(0.9turn);
+    }
+
+    50%{
+        transform: scale(1.75);
+        opacity: 0.5;
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
+
+
+@keyframes popup{
+    0%{
+        transform: scale(0);
+    }
+
+    50%{
+        transform: scale(0.3);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
