@@ -79,7 +79,7 @@ class BoxGenerator {
     clear() {
         this.parents.innerHTML = "";
         this.boxList = [];
-        clearInterval(this.createInterval)
+        clearInterval(this.createInterval);
         return this;
     }
 
@@ -91,12 +91,12 @@ class BoxGenerator {
 }
 
 function toTwoDigits(num) {
-    return `0${num}`.slice(-2)
+    return `0${num}`.slice(-2);
 }
 
 function toggleTime() {
     isShowTime = !isShowTime;
-    showTime()
+    showTime();
 }
 
 function showTime() {
