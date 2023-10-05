@@ -2,7 +2,6 @@
 class BoxGenerator{
     constructor(size = 20, color = '#fff', randomColor = false, deltaTime = 10, parents = content){
         this.size = size;
-        this.area = size**2;
         this.color = color;
         this.parents = parents;
         this.deltaTime = deltaTime;
@@ -38,7 +37,7 @@ class BoxGenerator{
 
     fillScreen(randomColor = false ,delta = this.deltaTime){
         let screenArea = innerHeight * innerWidth;
-        this.count = ~~ (screenArea / this.area);
+        this.count = ~~ (screenArea / this.size ** 2);
         let randomHue = Math.random()*360;
         this.createInterval = setInterval(()=>{
             if(this.count){
@@ -140,10 +139,4 @@ function init(){
     });
 }
 
-
-
 window.onload = init;
-
-
-// var style = window.getComputedStyle(element).getPropertyValue('background-color')
-// var style = cell.computedStyleMap().get('background-color').toString();
