@@ -1,0 +1,24 @@
+1019    (read a)
+1020    (read b)
+1021    (read c)
+2019    (load a)
+2122    (store to d)
+3120    (a - b)
+4113    (branch negative to ee if b > a, then d = b)
+2022    (load d)
+3121    (d - c)
+4116    (branch negative to ff if c > d, then d = c)
+2022    (load d)
+1122    (write d)
+4300    (halt)
+2020    (load b) # ee
+2122    (store to d)
+4007    (branch to 07)
+2021    (load c) # ff
+2122    (store to d)
+4010    (branch to 10)
+0000    (let a = input)
+0000    (let b = input)
+0000    (let c = input)
+0000    (let d = a) # Store largest number
+0000    # This code calculates which number is the largest
