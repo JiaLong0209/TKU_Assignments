@@ -196,7 +196,7 @@ class Simpletron():
     
     def printText(self, str = '', delta=0.0001, end='\n', slow_mode=True):
         """
-        Print the string character by character.
+        Print the string character by character. (optional)
         """
         if(slow_mode):
             for i in str:
