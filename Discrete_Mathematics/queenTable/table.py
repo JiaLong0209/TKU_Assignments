@@ -41,7 +41,7 @@ class Table:
         Return the sign of -1 and 1, must be str
         """
         # Queens are represented by the number 1, empty cells by -1.
-        return 'o' if n == 1 else '-'
+        return 'Q' if n == 1 else '-'
 
     def checkLineValid(self, column, row, printError=True):
         """
