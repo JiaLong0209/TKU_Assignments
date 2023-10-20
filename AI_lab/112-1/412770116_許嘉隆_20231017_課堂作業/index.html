@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,17 +13,18 @@
         <h1 class="title">User Information</h1>
         <div class="content">
             <div class="setting section">
+                <h1>Input Data</h1>
                 <div class="input_box">
                     <span>User name:</span>
-                    <input type="text" name="" id="name">
+                    <input type="text" name="name" id="name">
                 </div>
                 <div class="input_box">
                     <span>Password:</span>
-                    <input type="password" name="" id="password">
+                    <input type="password" name="password" id="password">
                 </div>
                 <div class="input_box">
                     <span>Email:</span>
-                    <input type="email" name="" id="email">
+                    <input type="email" name="email" id="email">
                 </div>
                 <div class="input_box">
                     <span>Gender:</span>
@@ -55,6 +56,7 @@
                     <input type="checkbox" name="langs" id="Bash" value="Bash"><label for="Bash">Bash</label>
                     <input type="checkbox" name="langs" id="SQL" value="SQL"><label for="SQL">SQL</label>
                 </div>
+                <button type="button" id="saveBtn">Save Data</button>
                 <!-- 
                     user name
                     password
@@ -68,7 +70,15 @@
                  -->
             </div>
             <div class="show_info section">
-
+                <h1>Output Data</h1>
+                <div class="output_box">Name: <span class="output"></span></div>
+                <div class="output_box">Password: <span class="output"></span></div>
+                <div class="output_box">Email: <span class="output"></span></div>
+                <div class="output_box">Gender: <span class="output"></span></div>
+                <div class="output_box">Favorite color: <span class="output"></span></div>
+                <div class="output_box">Birthday: <span class="output"></span></div>
+                <div class="output_box">IQ: <span class="output"></span></div>
+                <div class="output_box">Programming Languages: <span class="output"></span></div>
             </div>
         </div>
     </div>
