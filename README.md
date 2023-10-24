@@ -17,4 +17,11 @@
 ![20231003](./img/20231003-2.png)
 
 * [20231017_week6 課堂作業](https://jialong0209.github.io/TKU_Assignments/AI_lab/112-1/412770116_%E8%A8%B1%E5%98%89%E9%9A%86_20231017_%E8%AA%B2%E5%A0%82%E4%BD%9C%E6%A5%AD/index.html)
-![20231003](./img/week6.png)
+![20231017](./img/week6.png)
+
+* [20231024_week7-1 課堂作業](https://jialong0209.github.io/TKU_Assignments/AI_lab/112-1/412770116_%E8%A8%B1%E5%98%89%E9%9A%86_20231024_%E8%AA%B2%E5%A0%82%E4%BD%9C%E6%A5%AD/todo_list/index.html)
+* [20231024_week7-2 課堂作業](https://jialong0209.github.io/TKU_Assignments/AI_lab/112-1/412770116_%E8%A8%B1%E5%98%89%E9%9A%86_20231024_%E8%AA%B2%E5%A0%82%E4%BD%9C%E6%A5%AD/login/index.html)
+* [20231024_week7-3 課堂作業](https://jialong0209.github.io/TKU_Assignments/AI_lab/112-1/412770116_%E8%A8%B1%E5%98%89%E9%9A%86_20231024_%E8%AA%B2%E5%A0%82%E4%BD%9C%E6%A5%AD/photo_player/index.html)
+![20231024-1](./img/week7-1.png)
+![20231024-2](./img/week7-2.png)
+![20231024-3](./img/week7-3.png)
