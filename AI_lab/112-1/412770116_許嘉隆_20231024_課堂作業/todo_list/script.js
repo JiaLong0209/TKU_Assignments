@@ -5,10 +5,10 @@ let data = []
 
 function render(){
   list.innerHTML = ''
-  for(let i of data){
+  for(let i in data){
     list.innerHTML += `
-    <div class="item" data-id="${i.id}">
-      <li>${i.content}</li>
+    <div class="item" data-id="${data[i].id}">
+      <li>${~~i+1}. ${data[i].content}</li>
       <button type="submit" class="delete" >X</button>
     </div>
   `;   
