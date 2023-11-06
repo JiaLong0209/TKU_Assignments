@@ -4,7 +4,8 @@ let idInput = document.querySelector('#tkuId');
 let classInput = document.querySelector('#totalClasses')
 let send = document.querySelector('#send');
 let info = document.querySelector('#info');
-
+let item_box = document.querySelector('.item_box');
+let timeoutArray = [];
 let TKU = {
 
     id: '000000000',
@@ -22,6 +23,17 @@ let TKU = {
     seatNumber: () => calcSeatNumber(TKU.id.slice(5, 8)),
 
 }
+let terms = [
+    "id",
+    "academicSystem",
+    "enrollmentYearROC",
+    "enrollmentYearAD",
+    "college",
+    "department",
+    "class",
+    "studentSerial",
+    "seatNumber",
+]
 
 let ID_decode = {
     "id": null,
@@ -35,17 +47,6 @@ let ID_decode = {
     "seatNumber": null,
 };
 
-let terms = [
-    "id",
-    "academicSystem",
-    "enrollmentYearROC",
-    "enrollmentYearAD",
-    "college",
-    "department",
-    "class",
-    "studentSerial",
-    "seatNumber",
-].sort()
 
 let chinese_term = {
     "id": "學號",
@@ -96,6 +97,25 @@ function sortByTerm(a, b) {
 
 function render(){
     
+    function tagTemplate(string, ...args){
+        return `${args[0]}： ${args[1]}`
+    }
+
+    for (let i of timeoutArray){
+        clearTimeout(i);
+    }
+
+    item_box.innerHTML = '';
+    let j = 0;
+    for (let i in ID_decode) {
+        timeoutArray.push(setTimeout(() => {
+            let e = document.createElement('div');
+            e.classList.add('item');
+            e.textContent = tagTemplate`${chinese_term[i]}${ID_decode[i]}`;
+            item_box.appendChild(e);
+        }, j * 60))
+        j += 1; 
+    }
 }
 
 function analyzeId(id, totalClasses) {
@@ -108,17 +128,29 @@ function analyzeId(id, totalClasses) {
         }
     }
 
-    let str = '';
-    for (let i in ID_decode) {
-        str += `${chinese_term[i]}: ${ID_decode[i]}\n`;
-    }
-
-    info.innerText = str;
+    render();
+    
+    // let str = '';
+    // for (let i in ID_decode) {
+    //     str += `${chinese_term[i]}: ${ID_decode[i]}\n`;
+    // }
+    // info.innerText = str;
 
 }
 
 function isValid(e) {
     return (!isNaN(Number(e.key)) && idInput.value.length <= 8)
+}
+
+function submit(){
+    length = idInput.value.length;
+    if(length < 9){
+        idInput.value = `${idInput.value}${'0'.repeat(9-length)}`
+    }
+    if(!classInput.value){
+        classInput.value = 1
+    }
+    analyzeId(idInput.value, classInput.value);
 }
 
 idInput.addEventListener('keypress', (e) => {
@@ -134,9 +166,17 @@ classInput.addEventListener('keypress', (e) => {
     }
 })
 
-send.addEventListener('click', () => { analyzeId(idInput.value, classInput.value) })
+classInput.addEventListener('change', (e) => {
+    if(e.target.value <= 0 ){
+        e.target.value = 1
+    }
+})
 
+send.addEventListener('click', submit)
 
+window.onload = () =>{
+    send.click()
+}
 
 
 
