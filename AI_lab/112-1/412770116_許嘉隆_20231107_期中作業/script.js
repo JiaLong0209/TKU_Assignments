@@ -37,7 +37,6 @@ function calcClass(num) {
 
 
 function render(){
-    
     function tagTemplate(string, ...args){
         return `${args[0]}： ${args[1]}`
     }
@@ -70,24 +69,15 @@ function analyzeId(id, totalClasses) {
     }
 
     render();
-    
-    // let str = '';
-    // for (let i in ID_decode) {
-    //     str += `${chinese_term[i]}: ${ID_decode[i]}\n`;
-    // }
-    // info.innerText = str;
 
 }
 
 function isValid(e) {
-    return (!isNaN(Number(e.key)) && idInput.value.length <= 8)
+    var selection = e.target.value.substr(e.target.selectionStart, e.target.selectionEnd - e.target.selectionStart);
+    return (!isNaN(Number(e.key)) && idInput.value.length <= 8) || selection
 }
 
-function submit(){
-    // info.style.height = `${window.innerHeight - 280 - document.querySelector('h1').offsetHeight - document.querySelector('.inputBox').offsetHeight}px`
-    // console.log(window.innerHeight)
-    // console.log( `${window.innerHeight - 80 - document.querySelector('h1').offsetHeight - document.querySelector('.inputBox').offsetHeight}px`)
-    length = idInput.value.length;
+function submit(){length = idInput.value.length;
     if(length < 9){
         idInput.value = `${idInput.value}${'0'.repeat(9-length)}`
     }
