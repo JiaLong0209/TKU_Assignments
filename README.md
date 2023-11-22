@@ -26,4 +26,4 @@
 ![20231024-2](./img/week7-2.png)
 ![20231024-3](./img/week7-3.png)
 
-* [20231107_week8~9 期中作業](https://jialong0209.github.io/TKU_Assignments/AI_lab/112-1/412770116_%E8%A8%B1%E5%98%89%E9%9A%86_20231107_%E6%9C%9F%E4%B8%AD%E4%BD%9C%E6%A5%AD/index.html
+* [20231107_week8~9 期中作業](https://jialong0209.github.io/TKU_Assignments/AI_lab/112-1/412770116_%E8%A8%B1%E5%98%89%E9%9A%86_20231107_%E6%9C%9F%E4%B8%AD%E4%BD%9C%E6%A5%AD/index.html)
