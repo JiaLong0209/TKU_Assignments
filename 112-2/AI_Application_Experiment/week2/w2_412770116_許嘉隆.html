@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>515408</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="cell code" data-execution_count="2" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="OwumzMo2Dpuo" data-outputId="6a39daf3-f9c7-49a6-89c1-717de1649696">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install beautifulsoup4</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (2.31.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.10/dist-packages (from requests) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests) (3.6)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests) (2024.2.2)
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.10/dist-packages (4.12.3)
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.10/dist-packages (from beautifulsoup4) (2.5)
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="86" id="f_aOHxUSD2XH">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ptt_host <span class="op">=</span> <span class="st">&#39;https://www.ptt.cc&#39;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ptt_url <span class="op">=</span> <span class="st">&#39;https://www.ptt.cc/bbs/Gossiping/index.html&#39;</span></span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="11" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="nm5qfuIzEdeh" data-outputId="b267b417-be4b-4698-f10f-98fee357e41e">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>web <span class="op">=</span> requests.get(ptt_url)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(web.status_code)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(web.text)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>200
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;meta charset=&quot;utf-8&quot;&gt;
+		
+
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+
+&lt;title&gt;批踢踢實業坊&lt;/title&gt;
+
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-common.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-base.css&quot; media=&quot;screen&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-custom.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/pushstream.css&quot; media=&quot;screen&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-print.css&quot; media=&quot;print&quot;&gt;
+
+
+
+
+	&lt;/head&gt;
+    &lt;body&gt;
+		
+&lt;div class=&quot;bbs-screen bbs-content&quot;&gt;
+    &lt;div class=&quot;over18-notice&quot;&gt;
+        &lt;p&gt;本網站已依網站內容分級規定處理&lt;/p&gt;
+
+        &lt;p&gt;警告︰您即將進入之看板內容需滿十八歲方可瀏覽。&lt;/p&gt;
+
+        &lt;p&gt;若您尚未年滿十八歲，請點選離開。若您已滿十八歲，亦不可將本區之內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士瀏覽，或將本網站內容向該人士出示、播放或放映。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;bbs-screen bbs-content center clear&quot;&gt;
+    &lt;form action=&quot;/ask/over18&quot; method=&quot;post&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;from&quot; value=&quot;/bbs/Gossiping/index.html&quot;&gt;
+        &lt;div class=&quot;over18-button-container&quot;&gt;
+            &lt;button class=&quot;btn-big&quot; type=&quot;submit&quot; name=&quot;yes&quot; value=&quot;yes&quot;&gt;我同意，我已年滿十八歲&lt;br&gt;&lt;small&gt;進入&lt;/small&gt;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;over18-button-container&quot;&gt;
+            &lt;button class=&quot;btn-big&quot; type=&quot;submit&quot; name=&quot;no&quot; value=&quot;no&quot;&gt;未滿十八歲或不同意本條款&lt;br&gt;&lt;small&gt;離開&lt;/small&gt;&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+		
+
+
+
+&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=G-DZ6Y3BY9GW&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag(&#39;js&#39;, new Date());
+
+      gtag(&#39;config&#39;, &#39;G-DZ6Y3BY9GW&#39;);
+&lt;/script&gt;
+&lt;script&gt;
+  (function(i,s,o,g,r,a,m){i[&#39;GoogleAnalyticsObject&#39;]=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,&#39;script&#39;,&#39;https://www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;);
+
+  ga(&#39;create&#39;, &#39;UA-32365737-1&#39;, {
+    cookieDomain: &#39;ptt.cc&#39;,
+    legacyCookieDomain: &#39;ptt.cc&#39;
+  });
+  ga(&#39;send&#39;, &#39;pageview&#39;);
+&lt;/script&gt;
+
+
+		
+&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//images.ptt.cc/bbs/v2.27/bbs.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script defer src=&quot;https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317&quot; integrity=&quot;sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==&quot; data-cf-beacon=&#39;{&quot;rayId&quot;:&quot;85be175e9f0d7bd0&quot;,&quot;version&quot;:&quot;2024.2.1&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;515615eb5fab4c9b91a11e9bf529e6cf&quot;,&quot;b&quot;:1}&#39; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="18" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="x5Sg4XrpE74X" data-outputId="06bcc5ed-b495-4486-dc4e-7a2e03200ecf">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;name&#39;</span>: <span class="st">&quot;Python&quot;</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;age&#39;</span>: <span class="st">&#39;18&#39;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&#39;https://script.google.com/macros/s/AKfycbw5PnzwybI_VoZaHz65TpA5DYuLkxIF-HUGjJ6jRTOje0E6bVo/exec&#39;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>web <span class="op">=</span> requests.get(url, params<span class="op">=</span> params)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(web)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(web.text)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>&lt;Response [200]&gt;
+你的名字是：Python，年紀：18 歲。
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="23" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="j0aQyTpVFXXB" data-outputId="cc02780b-21ee-4d98-a652-701297419608">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cookies <span class="op">=</span> {<span class="st">&#39;over18&#39;</span>: <span class="st">&#39;1&#39;</span>}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>web <span class="op">=</span> requests.get(ptt_url, cookies <span class="op">=</span> cookies)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(web.text)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;meta charset=&quot;utf-8&quot;&gt;
+		
+
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+
+&lt;title&gt;看板 Gossiping 文章列表 - 批踢踢實業坊&lt;/title&gt;
+
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-common.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-base.css&quot; media=&quot;screen&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-custom.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/pushstream.css&quot; media=&quot;screen&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;//images.ptt.cc/bbs/v2.27/bbs-print.css&quot; media=&quot;print&quot;&gt;
+
+
+
+
+	&lt;/head&gt;
+    &lt;body&gt;
+		
+&lt;div id=&quot;topbar-container&quot;&gt;
+	&lt;div id=&quot;topbar&quot; class=&quot;bbs-content&quot;&gt;
+		&lt;a id=&quot;logo&quot; href=&quot;/bbs/&quot;&gt;批踢踢實業坊&lt;/a&gt;
+		&lt;span&gt;&amp;rsaquo;&lt;/span&gt;
+		&lt;a class=&quot;board&quot; href=&quot;/bbs/Gossiping/index.html&quot;&gt;&lt;span class=&quot;board-label&quot;&gt;看板 &lt;/span&gt;Gossiping&lt;/a&gt;
+		&lt;a class=&quot;right small&quot; href=&quot;/about.html&quot;&gt;關於我們&lt;/a&gt;
+		&lt;a class=&quot;right small&quot; href=&quot;/contact.html&quot;&gt;聯絡資訊&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;main-container&quot;&gt;
+	&lt;div id=&quot;action-bar-container&quot;&gt;
+		&lt;div class=&quot;action-bar&quot;&gt;
+			&lt;div class=&quot;btn-group btn-group-dir&quot;&gt;
+				&lt;a class=&quot;btn selected&quot; href=&quot;/bbs/Gossiping/index.html&quot;&gt;看板&lt;/a&gt;
+				&lt;a class=&quot;btn&quot; href=&quot;/man/Gossiping/index.html&quot;&gt;精華區&lt;/a&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;btn-group btn-group-paging&quot;&gt;
+				&lt;a class=&quot;btn wide&quot; href=&quot;/bbs/Gossiping/index1.html&quot;&gt;最舊&lt;/a&gt;
+				&lt;a class=&quot;btn wide&quot; href=&quot;/bbs/Gossiping/index39023.html&quot;&gt;&amp;lsaquo; 上頁&lt;/a&gt;
+				&lt;a class=&quot;btn wide disabled&quot;&gt;下頁 &amp;rsaquo;&lt;/a&gt;
+				&lt;a class=&quot;btn wide&quot; href=&quot;/bbs/Gossiping/index.html&quot;&gt;最新&lt;/a&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+
+	&lt;div class=&quot;r-list-container action-bar-margin bbs-screen&quot;&gt;
+		&lt;div class=&quot;search-bar&quot;&gt;
+			&lt;form type=&quot;get&quot; action=&quot;search&quot; id=&quot;search-bar&quot;&gt;
+				&lt;input class=&quot;query&quot; type=&quot;text&quot; name=&quot;q&quot; value=&quot;&quot; placeholder=&quot;搜尋文章&amp;#x22ef;&quot;&gt;
+			&lt;/form&gt;
+		&lt;/div&gt;
+
+		
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;1&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709012824.A.B03.html&quot;&gt;[問卦] 特例修 pr多少&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;nowitzki41&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E7%89%B9%E4%BE%8B%E4%BF%AE&amp;#43;pr%E5%A4%9A%E5%B0%91&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Anowitzki41&quot;&gt;搜尋看板內 nowitzki41 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;1&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709012827.A.C82.html&quot;&gt;[問卦] 馬眼附近紅紅的  會是有蘇嗎？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;KZS&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E9%A6%AC%E7%9C%BC%E9%99%84%E8%BF%91%E7%B4%85%E7%B4%85%E7%9A%84&amp;#43;&amp;#43;%E6%9C%83%E6%98%AF%E6%9C%89%E8%98%87%E5%97%8E%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3AKZS&quot;&gt;搜尋看板內 KZS 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f3&quot;&gt;14&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709012877.A.E9E.html&quot;&gt;[問卦] Tifa在三次元是什麼人種?&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;smallpig02&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;Tifa%E5%9C%A8%E4%B8%89%E6%AC%A1%E5%85%83%E6%98%AF%E4%BB%80%E9%BA%BC%E4%BA%BA%E7%A8%AE%3F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Asmallpig02&quot;&gt;搜尋看板內 smallpig02 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709012907.A.7BB.html&quot;&gt;Re: [新聞] 陸警再闖金門禁止水域　陳雪生：海巡暫&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;keane9112&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E6%96%B0%E8%81%9E%5D&amp;#43;%E9%99%B8%E8%AD%A6%E5%86%8D%E9%97%96%E9%87%91%E9%96%80%E7%A6%81%E6%AD%A2%E6%B0%B4%E5%9F%9F%E3%80%80%E9%99%B3%E9%9B%AA%E7%94%9F%EF%BC%9A%E6%B5%B7%E5%B7%A1%E6%9A%AB&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Akeane9112&quot;&gt;搜尋看板內 keane9112 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;9&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709012994.A.7CC.html&quot;&gt;[新聞] 臺科大增不分系社會組　高中生升學新選擇&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;Qorqios&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E6%96%B0%E8%81%9E%5D&amp;#43;%E8%87%BA%E7%A7%91%E5%A4%A7%E5%A2%9E%E4%B8%8D%E5%88%86%E7%B3%BB%E7%A4%BE%E6%9C%83%E7%B5%84%E3%80%80%E9%AB%98%E4%B8%AD%E7%94%9F%E5%8D%87%E5%AD%B8%E6%96%B0%E9%81%B8%E6%93%87&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3AQorqios&quot;&gt;搜尋看板內 Qorqios 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;1&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013029.A.537.html&quot;&gt;Re: [問卦] 介石立志傳 是不是很勵志？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;a874622&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E4%BB%8B%E7%9F%B3%E7%AB%8B%E5%BF%97%E5%82%B3&amp;#43;%E6%98%AF%E4%B8%8D%E6%98%AF%E5%BE%88%E5%8B%B5%E5%BF%97%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Aa874622&quot;&gt;搜尋看板內 a874622 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;1&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013110.A.CAA.html&quot;&gt;Re: [新聞] 疑似「談不下去」！海巡長官全撤離返台 &lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;Mazda6680&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E6%96%B0%E8%81%9E%5D&amp;#43;%E7%96%91%E4%BC%BC%E3%80%8C%E8%AB%87%E4%B8%8D%E4%B8%8B%E5%8E%BB%E3%80%8D%EF%BC%81%E6%B5%B7%E5%B7%A1%E9%95%B7%E5%AE%98%E5%85%A8%E6%92%A4%E9%9B%A2%E8%BF%94%E5%8F%B0&amp;#43;&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3AMazda6680&quot;&gt;搜尋看板內 Mazda6680 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f3&quot;&gt;11&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013163.A.BDC.html&quot;&gt;[問卦] AI產生的卡通老鼠圖像 竟登上科學相關期&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;teeheehee&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;AI%E7%94%A2%E7%94%9F%E7%9A%84%E5%8D%A1%E9%80%9A%E8%80%81%E9%BC%A0%E5%9C%96%E5%83%8F&amp;#43;%E7%AB%9F%E7%99%BB%E4%B8%8A%E7%A7%91%E5%AD%B8%E7%9B%B8%E9%97%9C%E6%9C%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Ateeheehee&quot;&gt;搜尋看板內 teeheehee 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;3&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013263.A.6A6.html&quot;&gt;[問卦] 台灣是不是被看破手腳？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;addison123&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E5%8F%B0%E7%81%A3%E6%98%AF%E4%B8%8D%E6%98%AF%E8%A2%AB%E7%9C%8B%E7%A0%B4%E6%89%8B%E8%85%B3%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Aaddison123&quot;&gt;搜尋看板內 addison123 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013292.A.F7E.html&quot;&gt;[問卦] 這一刻　我們都是晚安小雞？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;fab4312&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E9%80%99%E4%B8%80%E5%88%BB%E3%80%80%E6%88%91%E5%80%91%E9%83%BD%E6%98%AF%E6%99%9A%E5%AE%89%E5%B0%8F%E9%9B%9E%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Afab4312&quot;&gt;搜尋看板內 fab4312 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;4&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013346.A.AE3.html&quot;&gt;[問卦] 很瘦的骨感美女貼過來，會心動嗎？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;Qorqios&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E5%BE%88%E7%98%A6%E7%9A%84%E9%AA%A8%E6%84%9F%E7%BE%8E%E5%A5%B3%E8%B2%BC%E9%81%8E%E4%BE%86%EF%BC%8C%E6%9C%83%E5%BF%83%E5%8B%95%E5%97%8E%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3AQorqios&quot;&gt;搜尋看板內 Qorqios 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;1&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013378.A.DB7.html&quot;&gt;[問卦] 失事漁船有可能成為開戰的契機嗎？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;jason1999&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E5%A4%B1%E4%BA%8B%E6%BC%81%E8%88%B9%E6%9C%89%E5%8F%AF%E8%83%BD%E6%88%90%E7%82%BA%E9%96%8B%E6%88%B0%E7%9A%84%E5%A5%91%E6%A9%9F%E5%97%8E%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Ajason1999&quot;&gt;搜尋看板內 jason1999 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013500.A.276.html&quot;&gt;[問卦] 其實蘇很頂吧？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;jizzinmyhand&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E5%85%B6%E5%AF%A6%E8%98%87%E5%BE%88%E9%A0%82%E5%90%A7%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Ajizzinmyhand&quot;&gt;搜尋看板內 jizzinmyhand 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013524.A.EDA.html&quot;&gt;[問卦] 越南落後國家可以打造出富國島，台灣?&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;tea001&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D&amp;#43;%E8%B6%8A%E5%8D%97%E8%90%BD%E5%BE%8C%E5%9C%8B%E5%AE%B6%E5%8F%AF%E4%BB%A5%E6%89%93%E9%80%A0%E5%87%BA%E5%AF%8C%E5%9C%8B%E5%B3%B6%EF%BC%8C%E5%8F%B0%E7%81%A3%3F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Atea001&quot;&gt;搜尋看板內 tea001 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+            
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1709013544.A.955.html&quot;&gt;Re: [問卦]醫生總額管制是不是很自私啊？&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;S9125126&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%95%8F%E5%8D%A6%5D%E9%86%AB%E7%94%9F%E7%B8%BD%E9%A1%8D%E7%AE%A1%E5%88%B6%E6%98%AF%E4%B8%8D%E6%98%AF%E5%BE%88%E8%87%AA%E7%A7%81%E5%95%8A%EF%BC%9F&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3AS9125126&quot;&gt;搜尋看板內 S9125126 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/27&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		
+        
+        &lt;div class=&quot;r-list-sep&quot;&gt;&lt;/div&gt;
+            
+                
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1699632792.A.2CB.html&quot;&gt;[公告] 八卦板板規(2023.11.11)&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;lwt501cx&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%85%AC%E5%91%8A%5D&amp;#43;%E5%85%AB%E5%8D%A6%E6%9D%BF%E6%9D%BF%E8%A6%8F%282023.11.11%29&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Alwt501cx&quot;&gt;搜尋看板內 lwt501cx 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt;11/11&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;!&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+            
+                
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f3&quot;&gt;14&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1707323028.A.174.html&quot;&gt;[協尋] 2/6 下午2點行忠行善交叉路口行車紀錄&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;chux&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%8D%94%E5%B0%8B%5D&amp;#43;2%2F6&amp;#43;%E4%B8%8B%E5%8D%882%E9%BB%9E%E8%A1%8C%E5%BF%A0%E8%A1%8C%E5%96%84%E4%BA%A4%E5%8F%89%E8%B7%AF%E5%8F%A3%E8%A1%8C%E8%BB%8A%E7%B4%80%E9%8C%84&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Achux&quot;&gt;搜尋看板內 chux 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/08&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+            
+                
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f3&quot;&gt;77&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1708678429.A.43A.html&quot;&gt;[公告] 板主徵選投票請按V開始捏&amp;amp;手機投票教學&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;ubcs&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%85%AC%E5%91%8A%5D&amp;#43;%E6%9D%BF%E4%B8%BB%E5%BE%B5%E9%81%B8%E6%8A%95%E7%A5%A8%E8%AB%8B%E6%8C%89V%E9%96%8B%E5%A7%8B%E6%8D%8F%26%E6%89%8B%E6%A9%9F%E6%8A%95%E7%A5%A8%E6%95%99%E5%AD%B8&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Aubcs&quot;&gt;搜尋看板內 ubcs 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/23&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+            
+                
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f3&quot;&gt;10&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1708682238.A.777.html&quot;&gt;[協尋] 113/2/20萬華艋舺大道行車紀錄&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;stuvfengyu&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%8D%94%E5%B0%8B%5D&amp;#43;113%2F2%2F20%E8%90%AC%E8%8F%AF%E8%89%8B%E8%88%BA%E5%A4%A7%E9%81%93%E8%A1%8C%E8%BB%8A%E7%B4%80%E9%8C%84&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3Astuvfengyu&quot;&gt;搜尋看板內 stuvfengyu 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/23&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+            
+                
+        
+        
+		&lt;div class=&quot;r-ent&quot;&gt;
+			&lt;div class=&quot;nrec&quot;&gt;&lt;span class=&quot;hl f2&quot;&gt;8&lt;/span&gt;&lt;/div&gt;
+			&lt;div class=&quot;title&quot;&gt;
+			
+				&lt;a href=&quot;/bbs/Gossiping/M.1708585202.A.204.html&quot;&gt;[協尋] 2/21 上午桃園南昌路與富昌街口行車紀&lt;/a&gt;
+			
+			&lt;/div&gt;
+			&lt;div class=&quot;meta&quot;&gt;
+				&lt;div class=&quot;author&quot;&gt;Eugeneyu&lt;/div&gt;
+				&lt;div class=&quot;article-menu&quot;&gt;
+					
+					&lt;div class=&quot;trigger&quot;&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class=&quot;dropdown&quot;&gt;
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=thread%3A%5B%E5%8D%94%E5%B0%8B%5D&amp;#43;2%2F21&amp;#43;%E4%B8%8A%E5%8D%88%E6%A1%83%E5%9C%92%E5%8D%97%E6%98%8C%E8%B7%AF%E8%88%87%E5%AF%8C%E6%98%8C%E8%A1%97%E5%8F%A3%E8%A1%8C%E8%BB%8A%E7%B4%80&quot;&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						
+						&lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/bbs/Gossiping/search?q=author%3AEugeneyu&quot;&gt;搜尋看板內 Eugeneyu 的文章&lt;/a&gt;&lt;/div&gt;
+						
+					&lt;/div&gt;
+					
+				&lt;/div&gt;
+				&lt;div class=&quot;date&quot;&gt; 2/22&lt;/div&gt;
+				&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+            
+        
+	&lt;/div&gt;
+
+    
+&lt;div class=&quot;bbs-screen bbs-footer-message&quot;&gt;本網站已依台灣網站內容分級規定處理。此區域為限制級，未滿十八歲者不得瀏覽。&lt;/div&gt;
+
+&lt;/div&gt;
+
+		
+
+
+
+&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=G-DZ6Y3BY9GW&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag(&#39;js&#39;, new Date());
+
+      gtag(&#39;config&#39;, &#39;G-DZ6Y3BY9GW&#39;);
+&lt;/script&gt;
+&lt;script&gt;
+  (function(i,s,o,g,r,a,m){i[&#39;GoogleAnalyticsObject&#39;]=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,&#39;script&#39;,&#39;https://www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;);
+
+  ga(&#39;create&#39;, &#39;UA-32365737-1&#39;, {
+    cookieDomain: &#39;ptt.cc&#39;,
+    legacyCookieDomain: &#39;ptt.cc&#39;
+  });
+  ga(&#39;send&#39;, &#39;pageview&#39;);
+&lt;/script&gt;
+
+
+		
+&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//images.ptt.cc/bbs/v2.27/bbs.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script defer src=&quot;https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317&quot; integrity=&quot;sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==&quot; data-cf-beacon=&#39;{&quot;rayId&quot;:&quot;85be33e5bbc8b18f&quot;,&quot;version&quot;:&quot;2024.2.1&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;515615eb5fab4c9b91a11e9bf529e6cf&quot;,&quot;b&quot;:1}&#39; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="42" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="4WdJQQStJaot" data-outputId="082283bd-7c3d-40ac-f27f-46c5fc2dd98c">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cookies <span class="op">=</span> {<span class="st">&#39;over18&#39;</span>: <span class="st">&#39;1&#39;</span>}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>web <span class="op">=</span> requests.get(ptt_url, cookies <span class="op">=</span> cookies)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(web.text, <span class="st">&quot;html.parser&quot;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> soup.select(<span class="st">&#39;.title a&#39;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> res:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i.get_text())</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Re: [問卦] 台灣撞死人代價低到離譜，連和解都免
+[問卦] 自住房房價上漲能幹嘛 
+[問卦] 學測放榜了 好快
+Re: [新聞] 代理孕母將合法？公聽會明登場 各界立
+[問卦] 真的有很多文組碩士畢業後在啃老嗎?
+[問卦] 這次感冒到底是怎樣啦
+[問卦] 窮人被當成是有錢人有什麼感覺？
+Re: [問卦] 越南落後國家可以打造出富國島，台灣?
+[新聞] 批林右昌故意不登記模糊產權 謝國樑直指O
+[公告] 八卦板板規(2023.11.11)
+[協尋] 2/6 下午2點行忠行善交叉路口行車紀錄
+[公告] 板主徵選投票請按V開始捏&amp;手機投票教學
+[協尋] 113/2/20萬華艋舺大道行車紀錄
+[協尋] 2/21 上午桃園南昌路與富昌街口行車紀
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="95" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="7Wtxt-hxMFPj" data-outputId="691b2260-7288-41c9-9972-6ffcb98d3a72">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cookies <span class="op">=</span> {<span class="st">&#39;over18&#39;</span>: <span class="st">&#39;1&#39;</span>}</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>web <span class="op">=</span> requests.get(ptt_url, cookies <span class="op">=</span> cookies)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(web.text, <span class="st">&quot;html.parser&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> soup.select(<span class="st">&#39;.r-ent&#39;</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>res_find <span class="op">=</span> soup.find_all(<span class="st">&#39;div&#39;</span>, class_<span class="op">=</span><span class="st">&#39;r-ent&#39;</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(soup))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(res))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(res_find))</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> res_find:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> i.find_all(<span class="st">&#39;a&#39;</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index,j <span class="kw">in</span> <span class="bu">enumerate</span>(a):</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(index <span class="op">==</span> <span class="dv">0</span>):</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            text <span class="op">=</span> j.get_text()</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span>(index <span class="op">==</span> <span class="dv">2</span>):</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            name <span class="op">=</span> j.get_text()[<span class="dv">6</span>:<span class="op">-</span><span class="dv">4</span>]</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    href <span class="op">=</span> a[<span class="dv">0</span>][<span class="st">&#39;href&#39;</span>]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(text)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(ptt_host <span class="op">+</span> href)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>&lt;class &#39;bs4.BeautifulSoup&#39;&gt;
+&lt;class &#39;bs4.element.ResultSet&#39;&gt;
+&lt;class &#39;bs4.element.ResultSet&#39;&gt;
+ray90910
+[問卦] 小朋友不體罰到底要怎麼教啊？
+https://www.ptt.cc/bbs/Gossiping/M.1709015308.A.D5C.html
+sheng1300905
+[新聞] 侵權53個頻道！陳建州愛看的安博盒子　負
+https://www.ptt.cc/bbs/Gossiping/M.1709015313.A.06B.html
+k232
+[問卦] 蘇慧倫謝金燕陳美鳳誰是演藝圈真正美魔女
+https://www.ptt.cc/bbs/Gossiping/M.1709015348.A.AFC.html
+leon131417
+[問卦] 震撼彈 王剛師傅 b站解禁了
+https://www.ptt.cc/bbs/Gossiping/M.1709015416.A.B5A.html
+w510048
+[問卦] 企業最愛大學的調查都怎麼來的?
+https://www.ptt.cc/bbs/Gossiping/M.1709015548.A.463.html
+zoeapezoo
+[新聞] M痘甫宣布消除就破功 中南部新增今年首2
+https://www.ptt.cc/bbs/Gossiping/M.1709015717.A.564.html
+moebius2
+Re: [問卦] 習包子怎麼做到把中國房價打到骨折？
+https://www.ptt.cc/bbs/Gossiping/M.1709015721.A.0EF.html
+TomFord5566
+[問卦] 穿alo在台灣會顯得很潮嗎？
+https://www.ptt.cc/bbs/Gossiping/M.1709015736.A.6CE.html
+CRAM1234
+Re: [問卦] uber eat是不是快倒了
+https://www.ptt.cc/bbs/Gossiping/M.1709015798.A.97E.html
+pipiboygay
+[問卦] 亞尼克董事長無奈:兩年請不到人當店長
+https://www.ptt.cc/bbs/Gossiping/M.1709015854.A.77C.html
+schwalbe
+[新聞] 「才說不要踩」武陵農場直播　女硬踩花田
+https://www.ptt.cc/bbs/Gossiping/M.1709015932.A.734.html
+j29871049
+[問卦] 飲料店的人氣排行怎排出來的？
+https://www.ptt.cc/bbs/Gossiping/M.1709015967.A.90C.html
+ralfeistein
+[新聞] 飛機降落前…59歲男子「離奇陳屍座位上」
+https://www.ptt.cc/bbs/Gossiping/M.1709016000.A.F41.html
+GrimmNotes
+[問卦] 亞尼克什麼口味的蛋糕最頂
+https://www.ptt.cc/bbs/Gossiping/M.1709016057.A.43E.html
+kaky
+Re: [新聞] 疑似「談不下去」！海巡長官全撤離返台 
+https://www.ptt.cc/bbs/Gossiping/M.1709016059.A.56E.html
+botnet
+Re: [新聞] M痘甫宣布消除就破功 中南部新增今年
+https://www.ptt.cc/bbs/Gossiping/M.1709016064.A.13E.html
+abc9bitedi
+[問卦] 沙威瑪為啥都要加兩顆葡萄乾= =?
+https://www.ptt.cc/bbs/Gossiping/M.1709016155.A.717.html
+sunnydragon7
+[新聞] 台積電台中二期廠2027年完工 盧秀燕掛保
+https://www.ptt.cc/bbs/Gossiping/M.1709016190.A.3DB.html
+Borges
+[問卦] 如果金門淪陷 金門人會流亡台灣嗎?
+https://www.ptt.cc/bbs/Gossiping/M.1709016292.A.3F4.html
+nowitzki41
+[問卦] 小孩會學爸媽的口頭禪嗎
+https://www.ptt.cc/bbs/Gossiping/M.1709016298.A.152.html
+lwt501cx
+[公告] 八卦板板規(2023.11.11)
+https://www.ptt.cc/bbs/Gossiping/M.1699632792.A.2CB.html
+chux
+[協尋] 2/6 下午2點行忠行善交叉路口行車紀錄
+https://www.ptt.cc/bbs/Gossiping/M.1707323028.A.174.html
+ubcs
+[公告] 板主徵選投票請按V開始捏&amp;手機投票教學
+https://www.ptt.cc/bbs/Gossiping/M.1708678429.A.43A.html
+stuvfengyu
+[協尋] 113/2/20萬華艋舺大道行車紀錄
+https://www.ptt.cc/bbs/Gossiping/M.1708682238.A.777.html
+Eugeneyu
+[協尋] 2/21 上午桃園南昌路與富昌街口行車紀
+https://www.ptt.cc/bbs/Gossiping/M.1708585202.A.204.html
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="98" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="fFkX2peqUUaG" data-outputId="da6876d3-7d6b-46c1-f935-f9725376b61f">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>stu1 <span class="op">=</span> {<span class="st">&#39;name&#39;</span>: <span class="st">&#39;Linux&#39;</span>, <span class="st">&#39;id&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;age&#39;</span>: <span class="dv">18</span>}</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>stu2 <span class="op">=</span> {<span class="st">&#39;name&#39;</span>: <span class="st">&#39;Unix&#39;</span>, <span class="st">&#39;id&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;age&#39;</span>: <span class="dv">19</span>}</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>room <span class="op">=</span> [stu1, stu2]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(room)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;output.json&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    json.dump(room, f, ensure_ascii<span class="op">=</span><span class="va">False</span>, indent <span class="op">=</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[{&#39;name&#39;: &#39;Linux&#39;, &#39;id&#39;: 1, &#39;age&#39;: 18}, {&#39;name&#39;: &#39;Unix&#39;, &#39;id&#39;: 2, &#39;age&#39;: 19}]
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="102" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="durdI2L4VoMS" data-outputId="54dd860f-ef7c-4fb8-ab2c-233c2dfd3d1e">
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;output.json&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    room <span class="op">=</span> json.load(f)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;classroom = &#39;</span>, room)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> room:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>classroom =  [{&#39;name&#39;: &#39;Linux&#39;, &#39;id&#39;: 1, &#39;age&#39;: 18}, {&#39;name&#39;: &#39;Unix&#39;, &#39;id&#39;: 2, &#39;age&#39;: 19}]
+{&#39;name&#39;: &#39;Linux&#39;, &#39;id&#39;: 1, &#39;age&#39;: 18}
+{&#39;name&#39;: &#39;Unix&#39;, &#39;id&#39;: 2, &#39;age&#39;: 19}
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="129" data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:0}" id="AmX8os66WnOf" data-outputId="0d5e0499-3860-4119-a35b-36df53d45e2c">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>web <span class="op">=</span> requests.get(ptt_url, cookies<span class="op">=</span>cookies)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(web.text, <span class="st">&#39;html.parser&#39;</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cookies <span class="op">=</span> {<span class="st">&#39;over18&#39;</span>: <span class="st">&#39;1&#39;</span>}</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>terms <span class="op">=</span> [<span class="st">&#39;title&#39;</span>, <span class="st">&#39;link&#39;</span>, <span class="st">&#39;id&#39;</span>, <span class="st">&#39;time&#39;</span>]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> {i: <span class="st">&#39;&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> terms}</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>articles <span class="op">=</span> soup.find_all(<span class="st">&#39;div&#39;</span>, class_<span class="op">=</span><span class="st">&#39;r-ent&#39;</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>fun <span class="op">=</span> [<span class="kw">lambda</span> i: i.find(<span class="st">&#39;a&#39;</span>).get_text(), <span class="kw">lambda</span> i: ptt_host <span class="op">+</span> i.find(<span class="st">&#39;a&#39;</span>)[<span class="st">&#39;href&#39;</span>],  <span class="kw">lambda</span> i: i.find(<span class="st">&#39;div&#39;</span>, class_<span class="op">=</span><span class="st">&quot;author&quot;</span>).get_text(), <span class="kw">lambda</span> i: i.find(<span class="st">&#39;div&#39;</span>, class_<span class="op">=</span><span class="st">&#39;date&#39;</span>).get_text()]</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>page <span class="op">=</span> []</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> articles:</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x, t <span class="kw">in</span> <span class="bu">enumerate</span>(terms):  content[t] <span class="op">=</span> fun[x](i)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> {i: <span class="st">&#39;&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> terms}</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    page.append(content)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> page:</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;w2.json&#39;</span>, <span class="st">&#39;w&#39;</span>, encoding<span class="op">=</span><span class="st">&#39;UTF-8&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    json.dump(page, f, ensure_ascii<span class="op">=</span><span class="va">False</span>, indent<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>{&#39;title&#39;: &#39;Re: [新聞] 監院指社宅興建效率不彰\u3000租金2萬至4萬5&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018217.A.962.html&#39;, &#39;id&#39;: &#39;andre9&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[新聞] 蔡英文財產曝光！存款6298萬\u3000選舉補助&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018306.A.DBC.html&#39;, &#39;id&#39;: &#39;s7166945&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 如果中國要求割讓金馬換取停戰 你同意嗎&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018320.A.80E.html&#39;, &#39;id&#39;: &#39;YOYOISGOOD&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 學測考爆了啦 怎麼辦&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018331.A.569.html&#39;, &#39;id&#39;: &#39;Imotucc&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 為什麼悟天克斯可以變身超三 達爾不行？&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018346.A.ED0.html&#39;, &#39;id&#39;: &#39;f77928&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;Re: [新聞] 疑似「談不下去」！海巡長官全撤離返台&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018370.A.53C.html&#39;, &#39;id&#39;: &#39;xzcb2008&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 你是否支持戰爭打死台灣炒房人渣子?&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018462.A.A16.html&#39;, &#39;id&#39;: &#39;AIronKuma&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[新聞] 台中公車司機和少年聊自慰 誘脫褲硬推包&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018482.A.808.html&#39;, &#39;id&#39;: &#39;jodojeda&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 中共如果在福建發動金門獨立公投會怎樣&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018508.A.5D6.html&#39;, &#39;id&#39;: &#39;werqq&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 東城會跟近江聯盟竟然要解散了&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018578.A.08E.html&#39;, &#39;id&#39;: &#39;av012345610&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 為何男生喜歡去酒店勝過喝茶？&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018603.A.860.html&#39;, &#39;id&#39;: &#39;rs23234&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[新聞] 金門人怨陸委會 小事搞成大事&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018665.A.386.html&#39;, &#39;id&#39;: &#39;LeeSeDol&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 為了生活可以忍耐，為了什麼不能忍耐呢&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018684.A.79A.html&#39;, &#39;id&#39;: &#39;circus763&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;Re: [新聞] 監院指社宅興建效率不彰\u3000租金2萬至4萬5&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018724.A.187.html&#39;, &#39;id&#39;: &#39;devidevi&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[新聞] 汐止婦墜37樓砸凹鐵皮遮雨棚 身首分離&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018802.A.C37.html&#39;, &#39;id&#39;: &#39;IDL&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[新聞] 可果美披薩醬又被檢出致癌農藥 邊境退運&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018818.A.454.html&#39;, &#39;id&#39;: &#39;a5687920&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;Re: [新聞] 疑似「談不下去」！海巡長官全撤離返台&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018828.A.C3A.html&#39;, &#39;id&#39;: &#39;tigotigo5566&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 日子越過越害怕是正常的嗎&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018863.A.19A.html&#39;, &#39;id&#39;: &#39;brother001&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[問卦] 通膨到連泳衣布料都縮水了（圖&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1709018896.A.3E0.html&#39;, &#39;id&#39;: &#39;thewtf&#39;, &#39;time&#39;: &#39; 2/27&#39;}
+{&#39;title&#39;: &#39;[公告] 八卦板板規(2023.11.11)&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1699632792.A.2CB.html&#39;, &#39;id&#39;: &#39;lwt501cx&#39;, &#39;time&#39;: &#39;11/11&#39;}
+{&#39;title&#39;: &#39;[協尋] 2/6 下午2點行忠行善交叉路口行車紀錄&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1707323028.A.174.html&#39;, &#39;id&#39;: &#39;chux&#39;, &#39;time&#39;: &#39; 2/08&#39;}
+{&#39;title&#39;: &#39;[公告] 板主徵選投票請按V開始捏&amp;手機投票教學&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1708678429.A.43A.html&#39;, &#39;id&#39;: &#39;ubcs&#39;, &#39;time&#39;: &#39; 2/23&#39;}
+{&#39;title&#39;: &#39;[協尋] 113/2/20萬華艋舺大道行車紀錄&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1708682238.A.777.html&#39;, &#39;id&#39;: &#39;stuvfengyu&#39;, &#39;time&#39;: &#39; 2/23&#39;}
+{&#39;title&#39;: &#39;[協尋] 2/21 上午桃園南昌路與富昌街口行車紀&#39;, &#39;link&#39;: &#39;https://www.ptt.cc/bbs/Gossiping/M.1708585202.A.204.html&#39;, &#39;id&#39;: &#39;Eugeneyu&#39;, &#39;time&#39;: &#39; 2/22&#39;}
+{&#39;title&#39;: &#39;&#39;, &#39;link&#39;: &#39;&#39;, &#39;id&#39;: &#39;&#39;, &#39;time&#39;: &#39;&#39;}
+</code></pre>
+</div>
+</div>
+</body>
+</html>
