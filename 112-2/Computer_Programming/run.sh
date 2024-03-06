@@ -1,6 +1,7 @@
 #!/bin/bash
 args=$@
 echo "Files: $args"
+echo "-------------------"
 
 filename=$1
 name=$(echo $filename | cut -d '.' -f 1)
