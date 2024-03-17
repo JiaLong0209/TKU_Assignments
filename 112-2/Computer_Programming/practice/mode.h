@@ -2,8 +2,9 @@
 #include <stdint.h>
 
 enum class Mode : int32_t{
-	easy,
+	easy, 
 	normal,
 	hard,
+	crazy
 };
 
