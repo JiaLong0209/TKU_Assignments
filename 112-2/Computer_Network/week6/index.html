@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+        .text{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px;
+            min-width: 10%;
+            max-width: 50%;
+            background: rgb(29, 28, 25);
+            border: 3px solid rgba(201, 211, 201, 0.667);
+            box-shadow:2px 1px 5px rgb(214, 33, 33);
+            border-radius: 30px;
+            padding: 20px;
+        }
+
+        .family1{
+            font-family: ubuntu;
+        }
+
+        .family2{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .text:hover{
+            max-width: 100%;
+            color: #333;
+            background: #fff;
+            transition: 0.5s;
+            word-spacing: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <audio controls>
+        <source src="./old_stories.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <div class="text family1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, repellendus.
+    </div>
+
+    <div class="text family2">
+        Lorem ipsum dolor sit amet.
+    </div>
+
+    <div class="text upper">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, excepturi neque sapiente alias repellat dolore.
+    </div>
+
+    <div class="text lower">
+        Lorem ipsum, dolor elit. Quos, excepturi neque sapiente alias repellat dolore.
+    </div>
+
+    <div class="text ">
+        ipsumdolor sit amet consectetur adipisicing elit. Quos, excepturi neque sapiente alias repellat dolore.
+
+
+    </div>
+
+</body>
+
+</html>

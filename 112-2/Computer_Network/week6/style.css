@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    transition: 0.2s;
+    background: #000;
+    color: #fff;
+}
+
+.upper{
+    text-transform: uppercase;
+}
+
+.lower{
+    text-transform: lowercase;
+}
+
+
+
+
