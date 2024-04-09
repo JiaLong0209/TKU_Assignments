@@ -20,7 +20,7 @@ class InsideWebSpider(scrapy.Spider):
 
         for title in titles:
             print(f"\nURL: {response.url}")
-            print(f"Title: {title.text.str  ip()}")
+            print(f"Title: {title.text.strip()}")
             yield {'title': title.text.strip()}
         
     
