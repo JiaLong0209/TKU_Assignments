@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 100vh;
+            width: 100%;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <canvas id="myChart" style="width:100%;max-width:80%"></canvas>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        let t = "radar";
+        const data = {
+            labels: [
+                'Eating',
+                'Drinking',
+                'Sleeping',
+                'Designing',
+                'Coding',
+                'Cycling',
+                'Running'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [65, 59, 90, 81, 56, 55, 40],
+                fill: true,
+                backgroundColor: 'rgba(25, 99, 132, 0.2)',
+                borderColor: 'rgb(255, 99, 12)',
+                pointBackgroundColor: 'rgb(25, 99, 12)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(255, 9, 132)'
+            }, {
+                label: 'My Second Dataset',
+                data: [28, 48, 40, 19, 96, 27, 100],
+                fill: true,
+                backgroundColor: 'rgba(54, 162, 25, 0.2)',
+                borderColor: 'rgb(54, 162, 235)',
+                pointBackgroundColor: 'rgb(54, 162, 235)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(54, 12, 235)'
+            }]
+        };
+
+
+
+
+        new Chart(ctx, {
+            type: t,
+            data: data,
+
+        });
+
+    </script>
+</body>
+
+</html>

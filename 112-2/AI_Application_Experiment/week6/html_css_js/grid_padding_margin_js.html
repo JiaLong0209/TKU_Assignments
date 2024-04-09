@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            transition: 0.2s;
+            box-sizing: border-box;
+            font-family: ubuntu;
+            text-align: center;
+        }
+
+        #all {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 2fr 1fr 2fr;
+            border: 3px #333 solid;
+            margin: auto;
+        }
+
+        .one {
+            grid-column: 1/4;
+            grid-row: 1/3;
+            background-color: rgb(179, 10, 10);
+        }
+
+        .two {
+            grid-column: 2/3;
+            grid-row: 2/3;
+            color: #333;
+            background-color: rgb(255, 255, 255);
+            border: 3px #222 solid;
+        }
+
+        .two:hover {
+            transition: 0.5s;
+            grid-column: 1/4;
+            background: #000;
+            color: #fff;
+            border: 3px #fff solid;
+        }
+
+        .three {
+            grid-column: 1/4;
+            grid-row: 3/4;
+            background-color: rgb(9, 96, 146);
+        }
+
+        .box {
+            padding: 20px;
+        }
+
+        div {
+            color: white;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="all">
+            <div class="one box">one</div>
+            <div class="two box">two</div>
+            <div class="three box">three</div>
+        </div>        
+    </div>
+
+</body>
+
+<script>
+    let container = document.querySelector('.container');
+    let arr = ['one', 'two', 'three'];
+    for(let num = 0; num < 100; num ++){
+        let ele = [];
+        let a = document.createElement('div');
+        a.id = 'all';
+        for(i in arr){
+            ele.push(document.createElement('div'));
+            ele[i].innerHTML = arr[i];
+            ele[i].classList.add(arr[i], 'box');
+            a.appendChild(ele[i]);
+        }
+        container.appendChild(a);
+    }
+
+    
+
+
+    
+</script>
+
+</html>

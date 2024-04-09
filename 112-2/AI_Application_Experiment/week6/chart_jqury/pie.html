@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 100vh;
+            width: 100%;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <canvas id="myChart" style="width:100%;max-width:80%"></canvas>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        let t = "pie";
+        const data = {
+            labels: [
+                'one', 'two', 'three'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 1000],
+                backgroundColor: [
+                    'rgb(10, 99, 132)',
+                    'rgb(54, 16, 235)',
+                    'rgb(10, 25, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(ctx, {
+            type: t,
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

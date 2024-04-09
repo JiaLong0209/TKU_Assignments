@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input practice</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="input">
+            <h1 style="display:inline">帳號: </h1><input placeholder="請輸入帳號" name=" second_value">
+            <h1 style="display:inline">密碼: </h1><input type="password" placeholder="請輸入密碼" name=" third_value">
+        </div>
+
+        <div id="radio">
+            <h1>請選擇你最喜歡的顏色：</h1><input type="radio" name="color" value="red"> red<br><input type="radio"
+                name="color" value="green"> green<br><input type="radio" name="color" value="blue"> blue
+        </div>
+
+        <div id="checkbox">
+            <h1>Programming language:</h1>
+            <input type="checkbox" name="lang" id="C#">C#
+            <input type="checkbox" name="lang" id="JavaScript">JavaScript
+            <input type="checkbox" name="lang" id="Python">Python
+            <input type="checkbox" name="lang" id="Bash">Bash
+        </div>
+
+        <div id="buttun">
+            <h1>Don't click the button</h1>
+            <input type="button" value="Click me" id="btn">
+        </div>
+
+    </div>
+    <script>
+        let btn = document.querySelector("input[type='button']");
+        console.log(btn);
+        btn.addEventListener("click", ()=>{
+            console.log("Don't click me!!!");
+            alert("Don't click me!!!");
+        })
+    </script>
+
+</body>
+
+</html>
