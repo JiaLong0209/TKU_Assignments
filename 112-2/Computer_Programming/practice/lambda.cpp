@@ -13,7 +13,7 @@ int main() {
     IntFunction lambda = [](int x) -> int { return x * 2; }; // This line is not valid C syntax
 
     // Call applyFunction with the lambda-like function
-    int result = applyFunction(5, [](int x) -> int {return x * 2});
+    int result = applyFunction(5, lambda);
 
     printf("Result: %d\n", result);
 
