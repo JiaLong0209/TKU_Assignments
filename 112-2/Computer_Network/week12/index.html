@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Self introduction</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<!-- Links (sit on top) -->
+	<div class="w3-top">
+		<div class="w3-row w3-padding w3-black nbr">
+			<div class="w3-col s3">
+				<a href="#" class="w3-button w3-block w3-black">HOME</a>
+			</div>
+			<div class="w3-col s3">
+				<a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+			</div>
+			<div class="w3-col s3">
+				<a href="#menu" class="w3-button w3-block w3-black">MENU</a>
+			</div>
+			<div class="w3-col s3">
+				<a href="#where" class="w3-button w3-block w3-black">WHERE</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header with image -->
+	<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+		<div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+			<span class="w3-tag">ID:412770116 Name:許嘉隆 Class:AI1B</span>
+		</div>
+		<!-- <div class="w3-display-middle w3-center">
+			<span class="w3-text-white" style="font-size:80px">Self<br>Introduction</span>
+		</div> -->
+		<div class="w3-display-bottomright w3-center w3-padding-large">
+			<span class="w3-text-black">2024/05/06</span>
+		</div>
+	</header>
+
+	<!-- Add a background color and large text to the whole page -->
+	<div class="w3-sand  w3-large">
+
+		<!-- About Container -->
+		<div class="w3-container" id="about">
+			<div class="w3-content" style="max-width:700px">
+				<h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT ME</span></h5>
+				<img src="https://awesomescreenshot.s3.amazonaws.com/image/5318640/47963236-992c61f4262f7d8e5b3cbd4a3e4ad373.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20240506%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240506T083203Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=5855cbc02635b6f18d3495da89acb1eaa5f0e8e9278cea03412a819232d30e53" class="w3-image" style="width:100%;margin:auto;">
+
+				<My>Hello world! My name is jialong, and I want to be a software engineer. <br>My favorite quote by Linus Torvalds:  </p>
+				<div class="w3-panel w3-leftbar w3-light-grey">
+					<p><i>"Talk is cheap. Show me the code."</i></p>
+					<p>- Linus Torvalds</p>
+				</div>
+				<img src="https://media.newyorker.com/photos/5ba177da9eb2f7420aadeb98/master/w_1600,c_limit/Cohen-Linus-Torvalds.jpg" style="width:100%;max-width:1000px" class="w3-margin-top">
+			</div>
+		</div>
+
+		<!-- Menu Container -->
+		<div class="w3-container" id="menu">
+			<div class="w3-content" style="max-width:700px">
+
+				<h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
+
+				<div class="w3-row w3-center w3-card w3-padding">
+					<a href="javascript:void(0)" onclick="openMenu(event, 'Interests');" id="myLink">
+						<div class="w3-col s6 tablink">Interests</div>
+					</a>
+					<a href="javascript:void(0)" onclick="openMenu(event, 'Skills');">
+						<div class="w3-col s6 tablink">Skills</div>
+					</a>
+				</div>
+
+				<div id="Interests" class="w3-container menu w3-padding-48 w3-card list">
+					<h5>Playing rhythm games</h5>
+					<p class="w3-text-grey">I like playing rhythm games such as osu!, taiko no tatsujin.</p><br>
+
+					<h5>Coding</h5>
+					<p class="w3-text-grey">Coding is my life.</p>
+					<br>
+
+					<h5>Listen to Touhou music</h5>
+					<p class="w3-text-grey">I love Touhou music so much. </p><br>
+
+					<h5>Drawing</h5>
+					<p class="w3-text-grey">Even though I'm not good at drawing, it still makes me feel good.</p><br>
+
+				<div id="Skills" class="w3-container menu w3-padding-48 w3-card list">
+					<h5>Taiko</h5>
+					<p class="w3-text-grey">I'm the top 100 of osu! taiko player in Taiwan. </p><br>
+
+					<h5>Programming</h5>
+					<p class="w3-text-grey">I have learn a lot of programming languages, like C++, Python, Javascript, GDScript, TypeScript, Bash, R, C#.</p><br>
+
+					<h5>Vim</h5>
+					<p class="w3-text-grey">I can't coding without Vim.</p><br>
+				</div>
+			</div>
+		</div>
+
+		<!-- Contact/Area Container -->
+		<div class="w3-container" id="where" style="padding-bottom:32px;">
+			<div class="w3-content" style="max-width:700px">
+				<h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
+				<p>You can find me on Github: Jialong0209</p>
+				<a href="https://github.com/JiaLong0209">
+					<img src="https://w7.pngwing.com/pngs/115/663/png-transparent-github-computer-icons-directory-github-mammal-cat-like-mammal-carnivoran.png" class="w3-image" style="width:50px;margin:auto;">
+				</a>
+				<form action="/action_page.php" target="_blank">
+					<p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required
+							name="Name"></p>
+					<p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people"
+							required name="People"></p>
+					<p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time"
+							required name="date" value="2020-11-16T20:00"></p>
+					<p><input class="w3-input w3-padding-16 w3-border" type="text"
+							placeholder="Message \ Special requirements" required name="Message"></p>
+					<p><button class="w3-button w3-black" type="submit">SEND MESSAGE</button></p>
+				</form>
+			</div>
+		</div>
+
+		<!-- End page content -->
+	</div>
+
+	<!-- Footer -->
+	<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+		<p>&copy; Jialong0209 2024</p>
+	</footer>
+	<script>
+		function openMenu(evt, menuName) {
+			var i, x, tablinks;
+			x = document.getElementsByClassName("menu");
+			for (i = 0; i < x.length; i++) {
+				x[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablink");
+			for (i = 0; i < x.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+			}
+			document.getElementById(menuName).style.display = "block";
+			evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+		}
+		document.getElementById("myLink").click();
+	</script>
+
+</body>
+
+</html>
