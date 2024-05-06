@@ -28,6 +28,10 @@ html {
     font-family: "Inconsolata", sans-serif;
 }
 
+.opa{
+    opacity: 0.8;
+}
+
 .nbr{
     border-radius: 0px;
 }
@@ -35,12 +39,13 @@ html {
 .bgimg {
     background-position: 50% 30%;
     background-size: cover;
-    background-image: url("https://www.yuditrafarmana.id/wp-content/uploads/2020/11/Self-Introduction.jpg");
+    /* background-image: url("https://www.yuditrafarmana.id/wp-content/uploads/2020/11/Self-Introduction.jpg"); */
+    background-image: url("https://awesomescreenshot.s3.amazonaws.com/image/5318640/47963236-992c61f4262f7d8e5b3cbd4a3e4ad373.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20240506%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240506T083203Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=5855cbc02635b6f18d3495da89acb1eaa5f0e8e9278cea03412a819232d30e53");
     min-height: 75%;
 }
 
 .menu {
-    display: none;
+    display: block;
 }
 
 .w3-tab{
@@ -73,6 +78,7 @@ img:hover{
 }
 
 .w3-panel{
+    border-radius: 0;
     padding: 20px;
 }
 
@@ -95,4 +101,9 @@ img:hover{
 }
 .w3-wide:hover{
     word-spacing: 0.75rem;
+}
+
+
+.My{
+    background: #000;
 }

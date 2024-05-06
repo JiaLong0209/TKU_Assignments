@@ -14,7 +14,7 @@
 
 	<!-- Links (sit on top) -->
 	<div class="w3-top">
-		<div class="w3-row w3-padding w3-black nbr">
+		<div class="w3-row w3-padding w3-black nbr opa">
 			<div class="w3-col s3">
 				<a href="#" class="w3-button w3-block w3-black">HOME</a>
 			</div>
@@ -31,15 +31,15 @@
 	</div>
 
 	<!-- Header with image -->
-	<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+	<header class="bgimg w3-display-container nbr"  id="home">
 		<div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
-			<span class="w3-tag">ID:412770116 Name:許嘉隆 Class:AI1B</span>
+			<span class="w3-tag ">ID:412770116 Name:許嘉隆 Class:AI1B</span>
 		</div>
 		<!-- <div class="w3-display-middle w3-center">
 			<span class="w3-text-white" style="font-size:80px">Self<br>Introduction</span>
 		</div> -->
 		<div class="w3-display-bottomright w3-center w3-padding-large">
-			<span class="w3-text-black">2024/05/06</span>
+			<span class="w3-text-white">Computer Network 2024/05/06</span>
 		</div>
 	</header>
 
@@ -47,12 +47,12 @@
 	<div class="w3-sand  w3-large">
 
 		<!-- About Container -->
-		<div class="w3-container" id="about">
+		<div class="w3-container nbr" id="about">
 			<div class="w3-content" style="max-width:700px">
 				<h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT ME</span></h5>
-				<img src="https://awesomescreenshot.s3.amazonaws.com/image/5318640/47963236-992c61f4262f7d8e5b3cbd4a3e4ad373.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20240506%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240506T083203Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=5855cbc02635b6f18d3495da89acb1eaa5f0e8e9278cea03412a819232d30e53" class="w3-image" style="width:100%;margin:auto;">
-
 				<My>Hello world! My name is jialong, and I want to be a software engineer. <br>My favorite quote by Linus Torvalds:  </p>
+
+
 				<div class="w3-panel w3-leftbar w3-light-grey">
 					<p><i>"Talk is cheap. Show me the code."</i></p>
 					<p>- Linus Torvalds</p>
@@ -90,15 +90,16 @@
 					<h5>Drawing</h5>
 					<p class="w3-text-grey">Even though I'm not good at drawing, it still makes me feel good.</p><br>
 
+				</div>
 				<div id="Skills" class="w3-container menu w3-padding-48 w3-card list">
 					<h5>Taiko</h5>
 					<p class="w3-text-grey">I'm the top 100 of osu! taiko player in Taiwan. </p><br>
 
 					<h5>Programming</h5>
-					<p class="w3-text-grey">I have learn a lot of programming languages, like C++, Python, Javascript, GDScript, TypeScript, Bash, R, C#.</p><br>
+					<p class="w3-text-grey">I learned many programming languages ​​such as C++, Python, Java, Javascript, GDScript, TypeScript, Bash, R, C#, Haskell and Lua.</p><br>
 
 					<h5>Vim</h5>
-					<p class="w3-text-grey">I can't coding without Vim.</p><br>
+					<p class="w3-text-grey">I can't code without Vim.</p><br>
 				</div>
 			</div>
 		</div>
@@ -132,22 +133,7 @@
 	<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
 		<p>&copy; Jialong0209 2024</p>
 	</footer>
-	<script>
-		function openMenu(evt, menuName) {
-			var i, x, tablinks;
-			x = document.getElementsByClassName("menu");
-			for (i = 0; i < x.length; i++) {
-				x[i].style.display = "none";
-			}
-			tablinks = document.getElementsByClassName("tablink");
-			for (i = 0; i < x.length; i++) {
-				tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
-			}
-			document.getElementById(menuName).style.display = "block";
-			evt.currentTarget.firstElementChild.className += " w3-dark-grey";
-		}
-		document.getElementById("myLink").click();
-	</script>
+	<script src="script.js"></script>
 
 </body>
 
