@@ -1,48 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define SIZE 10
-
-void generate_array_values(int *arr);
-int* largest(int *arr);
-void print_arr(int *arr);
-
-
-int main(){
-	int i;
-    int arr[SIZE];
-    srand(time(NULL));
-	generate_array_values(arr);
-	
-    print_arr(arr);
-    int *largest_ptr = largest(arr);
-    printf("Address of largest_num : %p\n", largest_ptr);
-    printf("Value of largest_num : %d\n", *largest_ptr);
-
-    return 0;
-}
+#define SIZE 5
 
 void generate_array_values(int arr[]){
-	int i;
-    for(i = 0; i < SIZE; i++){
-        arr[i] = (rand() % 25) + 1;
+    for(int i = 0; i < SIZE; i++){
+        arr[i] = rand() % (25 + 1 - 1) + 1;
     }
 }
 
 int* largest(int *arr){
-    int * largest_num = &arr[0];
-	int i;
-	for (i = 0; i < SIZE; i++){
-        largest_num = arr[i] > *largest_num ? &arr[i] : largest_num;
-	}
-	return largest_num;
-	
+    int num = arr[0];
+    int *max = &num;
+    for(int i = 0; i < SIZE; i++){
+        max = arr[i] > num ? &arr[i] : max;
+    }
+    printf("%p \n", max);
+    return max;
 }
 
 void print_arr(int *arr){
-    int i;
-    for(i = 0; i < SIZE; i++){
+    for(int i = 0; i < SIZE; i++){
         printf("%d ", arr[i]);
     }
     printf("\n");
+}
+
+int main(){
+    int arr[15];
+    srand(time(NULL));
+
+    generate_array_values(arr);
+    print_arr(arr);
+    int * ptr = largest(arr);
+    printf("%p \n", ptr);
+    printf("%d \n", *ptr);
+    
+
+
+    return 0;
 }
