@@ -1,0 +1,47 @@
+Table Employee {
+    id integer [pk, increment] 
+    name varchar(255) [not null] 
+    position varchar(255) [not null] 
+    hire_date date 
+}
+
+Table Expense {
+    id integer [pk, increment] 
+    employee_id integer [ref: > Employee.id, note: 'foreign key'] 
+    amount decimal(30, 10) [not null] 
+    description varchar(255) [default: 'General Expense'] 
+    date datetime [not null] 
+}
+
+Table Income {  
+    id integer [pk, increment] 
+    employee_id integer [ref: > Employee.id, note: 'foreign key']
+    source enum('Customer Payment', 'Donation', 'Other') [default: 'Other'] 
+    amount decimal(30, 10) [not null] 
+    date datetime [not null] 
+    description varchar(255) [default: 'Income Description']
+}
+
+Table Payment {
+    id integer [pk, increment] 
+    invoice_id integer [ref: > Invoice.id,  note: 'foreign key'] 
+    amount decimal(30, 10) [not null] 
+    date datetime [not null] 
+}
+
+Table Invoice {
+    id integer [pk, increment] 
+    customer_id integer [ref: > Customer.id, note: 'foreign key'] 
+    amount decimal(30, 10) [not null] 
+    date datetime [not null] 
+    due_date datetime [not null] 
+    status enum('Pending', 'Paid', 'Overdue') [default: 'Pending'] 
+}
+
+Table Customer {
+    id integer [pk, increment] 
+    name varchar(255) [not null] 
+    email varchar(255) [not null, unique] 
+    phone varchar(20) [not null] 
+    address varchar(255) [not null] 
+}
