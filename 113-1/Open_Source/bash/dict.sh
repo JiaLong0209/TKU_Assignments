@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Associative array (aka Dictionary object)
 declare -A sounds
 
 sounds[dog]="Bark"
