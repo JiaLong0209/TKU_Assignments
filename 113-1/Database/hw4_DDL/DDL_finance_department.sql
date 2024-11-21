@@ -1,3 +1,4 @@
+-- DDL 
 
 CREATE DATABASE FinanceDB;
 GO
