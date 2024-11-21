@@ -3,8 +3,9 @@ class Node:
         self.data = data
         self.next = next
 
-def data_to_node(data):
-    return data if isinstance(data, Node) else Node(data)
+    @staticmethod
+    def create_node(data):
+        return data if isinstance(data, Node) else Node(data)
 
 class Stack:
     def __init__(self):
@@ -27,7 +28,7 @@ class Stack:
         return self.top.data
 
     def push(self, data):
-        new_node = data_to_node(data)
+        new_node = Node.create_node(data)
 
         if self.is_empty(): 
             self.top = new_node
