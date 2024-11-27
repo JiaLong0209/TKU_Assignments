@@ -3,6 +3,9 @@
 USE FinanceDB;
 GO
 
+--- Tables
+---
+
 
 INSERT INTO Employee (name, position, hire_date)
 VALUES
@@ -61,3 +64,4 @@ VALUES
 (3, 5000.00, '2024-10-10 10:00:00'),
 (5, 1500.00, '2024-10-12 11:00:00');
 
+---
