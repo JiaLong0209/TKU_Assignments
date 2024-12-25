@@ -53,7 +53,7 @@ def erode(img, kernel_size=3, iterations=4):
 # -----------------------------------------
 
 def process_image(img, effects, titles=[], verbose=True, col=1, row=-1, cmaps=[], img_scale=3):
-    titles = ["Original"] if not titles else titles
+    titles = ["prev_img"] if not titles else titles
     images = [img]
     prev_img = img  
     for index, effect in enumerate(effects):
@@ -74,12 +74,9 @@ def process_image(img, effects, titles=[], verbose=True, col=1, row=-1, cmaps=[]
     return images
 
 def  motion_blur_kernel(kernel_size = 3, angle = 0, standard=True):
-
     kernel = np.zeros((kernel_size, kernel_size))  # 開一個全黑畫布
     center = kernel_size // 2  # 計算核的中心位置
-
     cv2.line(kernel, (center, 0), (center, kernel_size - 1), 1, thickness=1)  # 在核中畫一條垂直的直線
-
     rotation_matrix = cv2.getRotationMatrix2D((center, center), angle, 1)  # 生成旋轉矩陣
     kernel = cv2.warpAffine(kernel, rotation_matrix, (kernel_size, kernel_size))  # 將旋轉矩陣應用到模糊核上
     if standard: 
@@ -128,7 +125,7 @@ def motion_blur(image, kernel_size, angle):
 def wiener_filter(image, kernel, K=0.01, verbose=True):
 
     result = np.zeros_like(image)
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(15, 10))
 
     def process_gray_image():
         kernel_padded = np.pad(kernel, [(0, image.shape[0] - kernel.shape[0]), 
@@ -213,6 +210,71 @@ def wiener_filter(image, kernel, K=0.01, verbose=True):
     plt.show()
     return result
 
+
+# -----------------------------------------
+
+def apply_spectrum_circular_mask(img_a, img_b, radius, c=1, e=1, verbose=True):
+    # Create a center circle mask for each channel
+    result = np.zeros_like(img_a)
+    channels = img_a.shape[2]
+
+    plt.figure(figsize=(12, channels * 3))  # Adjust figure size for better visibility
+
+    for i in range(channels):
+        shifted_spectrum_a = np.fft.fft2(img_a[:, :, i])
+        shifted_spectrum_b = np.fft.fft2(img_b[:, :, i])
+
+        # Shift the spectrum to center
+        shifted_spectrum_a = np.fft.fftshift(shifted_spectrum_a)
+        shifted_spectrum_b = np.fft.fftshift(shifted_spectrum_b)
+
+        # Apply circular mask
+        result_spectrum = apply_circular_mask(shifted_spectrum_a, (shifted_spectrum_b * c) ** e, radius=radius)
+        
+        # Inverse FFT to get the image back
+        result[:, :, i] = np.abs(np.fft.ifft2(result_spectrum))
+
+        # Show the spectrum image
+        plt.subplot(channels, 4, i * 4 + 1)
+        plt.imshow(np.log(1 + np.abs(shifted_spectrum_a)), cmap='gray')
+        plt.title(f"Spectrum of Image A - Channel {i + 1}")
+        plt.axis('off')
+
+        plt.subplot(channels, 4, i * 4 + 2)
+        plt.imshow(np.log(1 + np.abs(shifted_spectrum_b)), cmap='gray')
+        plt.title(f"Spectrum of Image B - Channel {i + 1}")
+        plt.axis('off')
+
+        # Show the masked spectrum image
+        plt.subplot(channels, 4, i * 4 + 3)
+        plt.imshow(np.log(1 + np.abs(result_spectrum)), cmap='gray')
+        plt.title(f"Masked Spectrum - Channel {i + 1}")
+        plt.axis('off')
+
+        # Show the restored image
+        plt.subplot(channels, 4, i * 4 + 4)
+        plt.imshow(result[:, :, i], cmap='gray')
+        plt.title(f"Restored Image - Channel {i + 1}")
+        plt.axis('off')
+
+    plt.tight_layout()
+    plt.show()
+    
+    return result
+
+
+def apply_circular_mask(shifted_spectrum_a, shifted_spectrum_b, radius):
+    # Create a center circle mask
+    rows, cols = shifted_spectrum_a.shape
+    center = (rows // 2, cols // 2)
+    Y, X = np.ogrid[:rows, :cols]
+    mask = (X - center[1])**2 + (Y - center[0])**2 <= radius**2
+
+    # Create the result spectrum
+    result_spectrum = np.where(mask, shifted_spectrum_a, shifted_spectrum_b)
+    return result_spectrum
+
+
 # -----------------------------------------
 
 import cv2
@@ -253,6 +315,34 @@ def adjust(img, contrast = 1, brightness = 0, saturation = 1):
     
     return img
 
+
+def assign_channels(img, channels=[0, 1, 2]):
+    assigned_channels = [img[:, :, i] for i in channels if i < img.shape[2]]
+    merged_image = cv2.merge(assigned_channels)
+    return merged_image
+
+def choose_channels(img, channels=[0, 1, 2]):
+    chosen_channels = [img[:, :, i] for i in channels if i < img.shape[2]]
+    merged_image = cv2.merge(chosen_channels)
+    
+    plt.figure(figsize=(10, 5))
+    plt.subplot(1, 2, 1)
+    plt.imshow(merged_image)
+    plt.title("Merged Channels Image")
+    plt.axis('off')
+    
+    plt.subplot(1, 2, 2)
+    for i in range(len(chosen_channels)):
+        plt.subplot(1, len(chosen_channels), i + 1)
+        plt.imshow(chosen_channels[i], cmap='gray')
+        plt.title(f"Channel {channels[i] + 1}")
+        plt.axis('off')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    return merged_image
+
 #------------------------------------------------------
 import cv2
 import numpy as np
@@ -262,7 +352,6 @@ def notch_reject_filter(shape, d0=9, x=0, y=0, verbose=True):
     P, Q, C = shape
     H = np.ones((P, Q, 3))  # 初始化為全通濾波器 (值為1) for each color channel
 
-    # 將座標轉換到頻譜中心
     x_c = x - Q / 2
     y_c = y - P / 2
     if verbose:
@@ -290,11 +379,8 @@ def is_overlay(d0, x, y, notch_p):
             return True
     return False
 
-
-
 def apply_notch_filters(img, notch_p, verbose=True, auto=False, threshold=250, auto_d0=30):
     
-    print("hello 1")
     img_shape = img.shape
     channels = img_shape[2] if len(img_shape) == 3 else 1  # Check if image has multiple channels
     NotchFilter = np.ones(img_shape)  # Initialize NotchFilter for multiplication
@@ -314,8 +400,8 @@ def apply_notch_filters(img, notch_p, verbose=True, auto=False, threshold=250, a
 
         notch_p = auto_notch_p  
 
-    print(len(notch_p))
     print(notch_p)
+    print(f'Total notch filters: {len(notch_p)}')
 
     for index, (d0, x, y) in (enumerate(notch_p)):
         print(f"\nNotch Filters ({index+1}): ")
@@ -337,7 +423,7 @@ def apply_notch_filters(img, notch_p, verbose=True, auto=False, threshold=250, a
 
     def show_results():
         c, r = channels, 2  # Adjusted for number of channels
-        plt.figure(figsize=(c*3, r*3))
+        plt.figure(figsize=(c*5, r*5))
 
         plt.subplot(c, r, 1)
         plt.imshow(img, cmap='gray')
