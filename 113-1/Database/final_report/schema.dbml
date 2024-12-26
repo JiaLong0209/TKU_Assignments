@@ -1,0 +1,73 @@
+// Employee Table
+Table Employee {
+    id int [pk, increment] // Primary Key with auto-increment
+    name varchar(255) [not null]
+    position varchar(255) [not null]
+    email varchar(255) [not null, unique]
+    phone varchar(20) [not null]
+    address varchar(255) [not null]
+    hire_date datetime
+    department_id int
+}
+
+// Department Table
+Table Department {
+    id int [pk, increment] // Primary Key with auto-increment
+    name varchar(255) [not null]
+    manager_id int
+    budget decimal(30, 10) [not null, default: 0.0]
+}
+
+// Expense Table
+Table Expense {
+    id int [pk, increment] // Primary Key with auto-increment
+    employee_id int
+    amount decimal(30, 10) [not null]
+    description varchar(255) [default: 'General Expense']
+    date datetime [not null]
+}
+
+// Income Table
+Table Income {
+    id int [pk, increment] // Primary Key with auto-increment
+    employee_id int
+    source nvarchar(50) [default: 'Other']
+    amount decimal(30, 10) [not null]
+    date datetime [not null]
+    description varchar(255) [default: 'Income Description']
+}
+
+// Customer Table
+Table Customer {
+    id int [pk, increment] // Primary Key with auto-increment
+    name varchar(255) [not null]
+    email varchar(255) [not null, unique]
+    phone varchar(20) [not null]
+    address varchar(255) [not null]
+}
+
+// Invoice Table
+Table Invoice {
+    id int [pk, increment] // Primary Key with auto-increment
+    customer_id int
+    amount decimal(30, 10) [not null]
+    date datetime [not null]
+    due_date datetime [not null]
+    status nvarchar(50) [default: 'Pending']
+}
+
+// Payment Table
+Table Payment {
+    id int [pk, increment] // Primary Key with auto-increment
+    invoice_id int
+    amount decimal(30, 10) [not null]
+    date datetime [not null]
+}
+
+// Foreign Keys
+Ref: Employee.department_id > Department.id
+Ref: Expense.employee_id > Employee.id
+Ref: Income.employee_id > Employee.id
+Ref: Invoice.customer_id > Customer.id
+Ref: Payment.invoice_id > Invoice.id
+
