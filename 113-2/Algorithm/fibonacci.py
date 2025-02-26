@@ -7,7 +7,7 @@ def fibo(layer, n):
 def run_fibo():
     global k
     k = 0
-    n = 4
+    n = 16
     fibo(0, n)
 run_fibo()
 
