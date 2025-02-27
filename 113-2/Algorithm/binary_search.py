@@ -1,11 +1,11 @@
 
 def binary_search(l, x):
-    print(f"Try to find {x} in {l}")
+    print(f"=======================")
     low = 0
     high = len(l) - 1
     while(low <= high):
         mid = int((low + high)/2)
-        print(low, mid, high)
+        print(f"low = {low:>3}\t mid = {mid:>3}\t high = {high:>3}")
         if(l[mid] == x):
             return mid+1
         elif(l[mid] < x):
@@ -14,11 +14,11 @@ def binary_search(l, x):
             high = mid - 1
     return 0
 
-
 def run_binary_search():
-    l = [i for i in range(11, 21)]
-    x = 13
+    l = [i for i in range(1, 101)]
+    x = 16
     location = binary_search(l, x)
+    print(f"=======================")
     if(location):
         print(f"Found {x} at location {location}")
     else:
