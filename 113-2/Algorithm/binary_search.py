@@ -26,3 +26,13 @@ def run_binary_search():
 
 run_binary_search()
 
+# output:
+# =======================
+# low =   0        mid =  49       high =  99
+# low =   0        mid =  24       high =  48
+# low =   0        mid =  11       high =  23
+# low =  12        mid =  17       high =  23
+# low =  12        mid =  14       high =  16
+# low =  15        mid =  15       high =  16
+# =======================
+# Found 16 at location 16
