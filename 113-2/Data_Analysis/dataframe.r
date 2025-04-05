@@ -17,7 +17,9 @@ ex1 <- function(){
 
   p(df['height'][df['height']>160])
 
+  p(df$height > 160)
   p(which(df['height']>160))
+  p(df$height[which(df['height']>160)])
 
   p(df$height)
   p(df[1:5, 3])
@@ -32,6 +34,12 @@ ex1 <- function(){
 
   p(df[df$name %in% c("Wendy", "Tom"), ])
   # p(df[2])
+
+  p(df[1])
+  p(df[,1])
+  p(df$name %in% c("Wendy", "Tom"), )
+  p(names(df))
+  p(rownames(df))
 }
 
 ex2 <- function(){
@@ -89,9 +97,9 @@ ex3 <- function () {
 }
 
 main <- function () {
-  # ex1()
+  ex1()
   # ex2()
-  ex3()
+  # ex3()
 }
 
 main()

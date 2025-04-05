@@ -21,7 +21,7 @@ ex1 <- function () {
   p(colSums(a))
 
 }
-# ex1()
+ex1()
 
 ex2 <- function () {
   a <- matrix(c(c1,c2,c3), 3, byrow=T)
