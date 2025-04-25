@@ -82,10 +82,55 @@ ex5 <- function(){
   layout.show(2)
 }
 
+# Date
+ex6 <- function(){
+  k.data<-as.Date("2015-03-12")
+
+  print(k.data)
+  print(str(k.data))
+  print(k.data+c(10:20))
+  print(weekdays(k.data+c(10:20)))
+
+  a <- as.Date("2025-04-25")
+  print(weekdays(a))
+  print(months(a))
+
+  print(quarters(a))
+
+  print(Sys.Date())
+
+  print(seq(a, by='3 year', length.out=10))
+  print(seq(a, by='365 day', length.out=10))
+  print(seq(a, as.Date("2026-01-01"), length.out=10))
+}
+
+# Sys
+ex7 <- function(){
+  print(Sys.time())
+  print(Sys.time()+30) # add 30 seconds
+
+  t <- as.POSIXct(Sys.time()) # 2025-04-25 10:41:45 CST
+  print(t)
+  str(t+1:30)
+}
+
+# time series: ts(data, start, end, frequency)
+ex8 <- function(){
+  num <- sample(1:100, 10, replace=T)
+  t <- ts(num, 2000, 2000+length(num), 3)
+  print(t)
+  
+  height <- sample(200:300, 12, replace=T)
+  t <- ts(height, c(2016, 2), frequency=4)
+
+  print(t)
+  
+}
+
 main <- function () {
 
-  num = 5
-  fun <- list(ex1, ex2, ex3, ex4, ex5)
+  num = 8
+  fun <- list(ex1, ex2, ex3, ex4, ex5, ex6, ex7, ex8)
   if (num == 0) {
     for (f in fun) {
       f()
