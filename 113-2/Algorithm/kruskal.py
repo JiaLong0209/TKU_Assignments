@@ -86,9 +86,49 @@ def main():
 main()
 
 
-
-
-
-
-
-
+# output: 
+# === original graph ===
+#     0 <---> 1 | weight: 1
+#     0 <---> 2 | weight: 3
+#     1 <---> 2 | weight: 3
+#     1 <---> 3 | weight: 6
+#     2 <---> 3 | weight: 4
+#     2 <---> 4 | weight: 2
+#     3 <---> 4 | weight: 5
+#
+# === sorted graph ===
+#     0 <---> 1 | weight: 1
+#     2 <---> 4 | weight: 2
+#     0 <---> 2 | weight: 3
+#     1 <---> 2 | weight: 3
+#     2 <---> 3 | weight: 4
+#     3 <---> 4 | weight: 5
+#     1 <---> 3 | weight: 6
+#
+# -- union --
+#     x: subsets[0] | parent = 0 | rank = 0
+#     y: subsets[1] | parent = 1 | rank = 0
+#     x: subsets[0] | parent = 0 | rank = 1
+#     y: subsets[1] | parent = 0 | rank = 0
+# -- union --
+#     x: subsets[2] | parent = 2 | rank = 0
+#     y: subsets[4] | parent = 4 | rank = 0
+#     x: subsets[2] | parent = 2 | rank = 1
+#     y: subsets[4] | parent = 2 | rank = 0
+# -- union --
+#     x: subsets[0] | parent = 0 | rank = 1
+#     y: subsets[2] | parent = 2 | rank = 1
+#     x: subsets[0] | parent = 0 | rank = 2
+#     y: subsets[2] | parent = 0 | rank = 1
+# -- union --
+#     x: subsets[0] | parent = 0 | rank = 2
+#     y: subsets[3] | parent = 3 | rank = 0
+#     x: subsets[0] | parent = 0 | rank = 2
+#     y: subsets[3] | parent = 0 | rank = 0
+#
+# == Result ==
+#     0 <---> 1 | weight: 1
+#     2 <---> 4 | weight: 2
+#     0 <---> 2 | weight: 3
+#     2 <---> 3 | weight: 4
+#
