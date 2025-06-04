@@ -42,7 +42,10 @@ ex3 <- function(){
   df <- Cars93
   k <- table(df$Origin, df$AirBags)
 
+  h <- barplot(k, col = c(2,3,5))
+
   label_pos <- apply(k, 2, cumsum) - k/2
+  text(x = h, y = label_pos, labels = k, cex = 0.8, col = "black")
   print(k)
   print(max(k))
   print(label_pos)
@@ -53,7 +56,7 @@ ex3 <- function(){
 ex4 <- function(){
   library(MASS)
   attach(Cars93)
-  install(plotrix)
+  # install(plotrix)
 
   library(plotrix)
   cols = list(2:3, 4:6, 7:9)
@@ -125,7 +128,7 @@ ex8 <- function(){
 
 main <- function () {
 
-  num = 7
+  num = 5
   fun <- list(ex1, ex2, ex3, ex4, ex5, ex6, ex7, ex8)
   if (num == 0) {
     for (f in fun) {
