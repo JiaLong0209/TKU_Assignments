@@ -9,6 +9,7 @@ import tkinter as tk
 from tkinter import filedialog
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
+import time
 from typing import List, Dict, Any
 
 import music21
@@ -16,6 +17,7 @@ import music21
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
+from tqdm import tqdm
 
 load_dotenv()
 
@@ -86,12 +88,16 @@ class StandardNoteFormatter(INoteFormatter):
 class AppConfig:
     # llm_model_name: str = "models/gemma-3-27b-it" 
     llm_model_name: str = os.environ.get("LLM_MODEL_NAME", "models/gemma-3-27b-it")
-    user_prompt: str = os.environ.get("USER_PROMPT", "請根據上述全局數據以及『每一軌』的細節音符，給予詳盡作曲手法、真實和弦判讀（不要盲目相信程式初估的和弦）與樂理分析。務必嚴格遵守和弦記號規範！其他請使用繁體中文回答")
+    user_prompt: str = os.environ.get("USER_PROMPT", "請根據上述全局數據以及『每一軌』的細節音符，給予詳盡作曲手法、真實和弦判讀。務必嚴格遵守和弦記號規範！請不要只列出籠統的『M1-8』，必須明確指出『哪一個具體小節 (如 M14)』使用了什麼特定的作曲手法 (如模進 Sequence、持續音 Pedal)。所有和弦請附上級數 (如 Am (I), G (VII))。")
     api_key: str = os.environ.get("GOOGLE_API_KEY", "[ENCRYPTION_KEY]")
     llm_temperature: float = 0.3 
     midi_dir: str = "midi"
     output_dir: str = "output"
     default_midi_name: str = "default_song.mid"
+    # Added options to reduce LLM token cost upon user request
+    show_global_merged_chords: bool = False
+    show_individual_instruments: bool = True
+    
     # SOLID: Dependency Injection for note formatting
     note_format: NoteFormatConfig = field(default_factory=NoteFormatConfig)
 
@@ -144,18 +150,18 @@ class AppConfig:
         "數據格式為 `時間:音符+音符(音程)`。例如 `1.0:C4+B4(M7)` 代表在 1.0 拍處，聲部形成了「大七度」的張力。\n\n"
         "【🔍 分析重點】\n"
         "1. 對位邏輯：觀察聲部間的音程變化。是從不協和（如 m2, M7）解決到協和（如 P5, M3）嗎？\n"
-        "2. 旋律骨架：由於數據已簡化，請專注於分析旋律的「動機 (Motif)」如何隨時間演進。\n"
-        "3. 織體密度：觀察每個小節的切片數量，判斷節奏的複雜度與風格。\n\n"
+        "2. 旋律骨架與具體小節：分析旋律的「動機 (Motif)」與「作曲手法」。**絕對不能只含糊地寫 M1-M8，必須精確指出哪一個小節發生了什麼事** (例如：M5 出現了模進，M12 有持續音)。\n"
+        "3. 和弦級數 (Roman Numerals)：所有提到的和弦，**必須**附帶其在當前調性下的級數分析 (例如：Am (i), Fmaj7 (VI), G7 (V7))。\n"
+        "4. 織體密度：觀察每個小節的切片數量，判斷節奏的複雜度與風格。\n\n"
         "【⚠️ 嚴格規範】\n"
-        "- 保持專業英文術語（Am, Major 3rd, Counterpoint）。\n"
-        "- 報告需包含：風格鑑定、結構分析、核心對位手法、以及作品的藝術評價。\n"
+        "- 保持專業英文術語 (Am, Major 3rd, Counterpoint, Sequence)。\n"
+        "- 報告需包含：風格鑑定、結構分析、核心對位手法 (精確標明小節)、以及作品的藝術評價。\n"
         "請用簡潔有力、充滿洞見的文字輸出報告。"
-        "【📝 報告結構】\n"
+        "\n\n【📝 報告結構】\n"
         "一、風格鑑定：根據音符密度、動態、和聲語言判斷其最接近的音樂流派。\n"
-        "二、結構與織體：描述曲式的發展與多聲部之間的互動關係。\n"
-        "三、核心分析：結合垂直音程與水平旋律，分析其作曲手法（如對位、變奏、節奏特色等）。\n"
+        "二、具體結構與織體 (精確到小節)：列出明確的段落劃分與關鍵小節的互動關係。\n"
+        "三、核心分析 (附帶級數)：結合垂直音程與水平旋律，分析其具體的作曲手法（精確到小節號），並使用級數標示和弦。\n"
         "四、藝術評價：這首作品在該風格下表現出的創意與藝術價值。"
-
     )
 
 # ==========================================
@@ -338,6 +344,7 @@ class Music21MidiAnalyzer(IMidiAnalyzer):
 
     def analyze_file(self, file_path: str) -> Dict[str, Any]:
         print(f"[*] Deep scanning MIDI file (Full track extraction): {file_path} ...")
+        t0 = time.time()
         try:
             score = music21.converter.parse(file_path)
             
@@ -405,185 +412,146 @@ class Music21MidiAnalyzer(IMidiAnalyzer):
 
             # --- Micro Features (Full Track Notes/Chords per Measure) ---
             tracks_data = {}
-            for part in parts:
+            
+            # 1. Global Merged Chords (Time-Slice Analysis)
+            tracks_data["Global_Merged_Chords"] = {}
+            current_time_sig = None
+            current_key_sig = None
+            
+            chordified_measures = list(chordified.getElementsByClass('Measure'))
+            for measure in tqdm(chordified_measures, desc="Analyzing Global Chords"):
+                m_number = measure.number
+                notes_in_m = []
+                
+                m_time_sigs = measure.getElementsByClass(music21.meter.TimeSignature)
+                if m_time_sigs:
+                    new_ts = m_time_sigs[0].ratioString
+                    if current_time_sig is None:
+                        if ts and new_ts != str(ts):
+                            notes_in_m.append(f"[TimeSig_Change: {new_ts}]")
+                        current_time_sig = new_ts
+                    elif new_ts != current_time_sig:
+                        current_time_sig = new_ts
+                        notes_in_m.append(f"[TimeSig_Change: {current_time_sig}]")
+
+                m_key_sigs = measure.getElementsByClass(music21.key.KeySignature)
+                if m_key_sigs:
+                    if hasattr(m_key_sigs[0], 'asKey'):
+                        new_ks = str(m_key_sigs[0].asKey())
+                    else:
+                        new_ks = str(m_key_sigs[0])
+                        
+                    if current_key_sig is None:
+                        current_key_sig = new_ks
+                    elif new_ks != current_key_sig:
+                        current_key_sig = new_ks
+                        notes_in_m.append(f"[Key_Change: {current_key_sig}]")
+
+                slice_strings = []
+                prev_top_pitch = None
+                motion_count = {"Up": 0, "Down": 0, "Static": 0}
+                
+                offsets_dict = {}
+                for element in measure.flatten().getElementsByClass('Chord'):
+                    offset = round(float(element.offset), 3)
+                    # Remove trailing zeros if it's cleanly rounded
+                    offset = int(offset) if offset == int(offset) else offset
+                    
+                    if offset not in offsets_dict:
+                        offsets_dict[offset] = element
+                        
+                for offset in sorted(offsets_dict.keys()):
+                    c = offsets_dict[offset]
+                    if not c.pitches:
+                        continue
+                        
+                    sorted_pitches = sorted(c.pitches)
+                    bass_pitch = sorted_pitches[0]
+                    
+                    chord_prefix = ""
+                    if self.config.note_format.show_chord_name:
+                        try:
+                            chord_sym = music21.harmony.chordSymbolFigureFromChord(c)
+                            if chord_sym and chord_sym != 'Chord Symbol Cannot Be Identified' and 'pedal' not in chord_sym.lower():
+                                try:
+                                    rn = music21.roman.romanNumeralFromChord(c, key_sig).figure
+                                    chord_prefix = f"[{rn}({chord_sym})] "
+                                except:
+                                    chord_prefix = f"[{chord_sym}] "
+                        except:
+                            pass
+                            
+                    notes_str = "+".join([p.nameWithOctave for p in sorted_pitches])
+                    
+                    interval_names = []
+                    if len(sorted_pitches) > 1:
+                        for p in sorted_pitches[1:]:
+                            try:
+                                interval = music21.interval.Interval(bass_pitch, p).name
+                                interval_names.append(interval)
+                            except:
+                                pass
+                                
+                    interval_str = f"({','.join(interval_names)})" if interval_names else ""
+                    slice_strings.append(f"{chord_prefix}{offset}:{notes_str}{interval_str}")
+                    
+                    top_pitch = sorted_pitches[-1].midi
+                    if prev_top_pitch is not None:
+                        if top_pitch > prev_top_pitch: motion_count["Up"] += 1
+                        elif top_pitch < prev_top_pitch: motion_count["Down"] += 1
+                        else: motion_count["Static"] += 1
+                    prev_top_pitch = top_pitch
+
+                if not slice_strings:
+                    slice_strings = ["Rest"]
+                    
+                meta_tags = []
+                for n in notes_in_m:
+                    if n.startswith("[Key_Change:") or n.startswith("[TimeSig_Change:"):
+                        meta_tags.append(n)
+                
+                meta_str = " ".join(meta_tags) + " " if meta_tags else ""
+                slices_combined = " | ".join(slice_strings)
+                tracks_data["Global_Merged_Chords"][f"M{m_number}"] = f"{meta_str}{slices_combined}"
+                
+            # 2. Individual Instruments
+            for part in tqdm(parts, desc="Analyzing Instruments"):
                 part_name = part.partName or "Unknown_Instrument"
                 if part_name not in tracks_data:
                     tracks_data[part_name] = {}
                 
-                # We start tracking from None, so the FIRST signature 
-                # doesn't trigger a "change" tag if it matches the global one.
-                current_time_sig = None
-                current_key_sig = None
-
-                for measure in part.getElementsByClass('Measure'):
+                measures = list(part.getElementsByClass('Measure'))
+                for measure in tqdm(measures, desc=f"Track: {part_name[:15]}", leave=False):
                     m_number = measure.number
                     notes_in_m = []
                     
-                    # Detect Time Signature and Key Signature changes within the measure
-                    m_time_sigs = measure.getElementsByClass(music21.meter.TimeSignature)
-                    if m_time_sigs:
-                        new_ts = m_time_sigs[0].ratioString
-                        # If it's the very first TS we see, only record it as a change 
-                        # if it differs from the global TS
-                        if current_time_sig is None:
-                            if ts and new_ts != str(ts):
-                                notes_in_m.append(f"[TimeSig_Change: {new_ts}]")
-                            current_time_sig = new_ts
-                        elif new_ts != current_time_sig:
-                            current_time_sig = new_ts
-                            notes_in_m.append(f"[TimeSig_Change: {current_time_sig}]")
-
-                    m_key_sigs = measure.getElementsByClass(music21.key.KeySignature)
-                    if m_key_sigs:
-                        # Convert to key object first if it's just a signature
-                        if hasattr(m_key_sigs[0], 'asKey'):
-                            new_ks = str(m_key_sigs[0].asKey())
-                        else:
-                            new_ks = str(m_key_sigs[0])
+                    for element in measure.flatten().notes:
+                        offset = round(float(element.offset), 3)
+                        offset = int(offset) if offset == int(offset) else offset
+                        
+                        if element.isChord:
+                            notes_str = "+".join([p.nameWithOctave for p in sorted(element.pitches)])
+                            notes_in_m.append(f"{offset}:{notes_str}")
+                        elif element.isNote:
+                            notes_in_m.append(f"{offset}:{element.nameWithOctave}")
                             
-                        # Set the baseline for the first key signature found in the tracks
-                        # without explicitly injecting a Key_Change tag, to prevent 
-                        # false positives on M1 due to global 'analyze(key)' inaccuracies.
-                        if current_key_sig is None:
-                            current_key_sig = new_ks
-                        elif new_ks != current_key_sig:
-                            current_key_sig = new_ks
-                            notes_in_m.append(f"[Key_Change: {current_key_sig}]")
+                    if not notes_in_m:
+                        notes_in_m = ["Rest"]
+                        
+                    tracks_data[part_name][f"M{m_number}"] = " | ".join(notes_in_m)
 
-                    # Handle Time-Slice Analysis
-                    m_chordified = chordified.measure(m_number)
-                    slice_strings = []
-                    prev_top_pitch = None
-                    motion_count = {"Up": 0, "Down": 0, "Static": 0}
-                    
-                    if m_chordified:
-                        chords_in_m = m_chordified.flatten().getElementsByClass('Chord')
-                        
-                        for c in chords_in_m:
-                            offset = c.offset
-                            
-                            # 1. Standard Chord Name
-                            try:
-                                chord_sym = music21.harmony.chordSymbolFigureFromChord(c)
-                                chord_name = chord_sym if chord_sym != 'Chord Symbol Cannot Be Identified' else c.pitchedCommonName
-                            except:
-                                chord_name = c.pitchedCommonName
-                                
-                            # 2. Vertical Intervals from Bass
-                            if c.pitches:
-                                bass_midi = min(p.midi for p in c.pitches)
-                                intervals = sorted(list(set([(p.midi - bass_midi) for p in c.pitches])))
-                                intervals_str = ",".join(map(str, intervals))
-                                
-                                # Track Top Voice Melodic Motion
-                                top_pitch = max(p.midi for p in c.pitches)
-                                if prev_top_pitch is not None:
-                                    if top_pitch > prev_top_pitch:
-                                        motion_count["Up"] += 1
-                                    elif top_pitch < prev_top_pitch:
-                                        motion_count["Down"] += 1
-                                    else:
-                                        motion_count["Static"] += 1
-                                prev_top_pitch = top_pitch
-                            else:
-                                intervals_str = ""
-                                
-                            # 3. Horizontal State (On vs Sus)
-                            # To do this accurately across the measure, we actually need to look at the original measure notes
-                            # However, chordify gives us the exact sounding pitches at this slice.
-                            # We will determine On/Sus based on if the pitch is tied to a previous note or started here.
-                            # A simple proxy: if tie is 'continue' or 'stop', it's Sus. Otherwise, 'On'.
-                            notes_info = []
-                            for p in c.pitches:
-                                state = "On" # Default
-                                # We need to find the original note in the measure to check ties accurately
-                                # But for a simplified robust version, let's just use the chord pitches directly.
-                                # A true On/Sus check requires tracking active notes. Let's do that robustly.
-                                notes_info.append(f"{p.nameWithOctave}(On)") # Simplified for now, will refine if complex
-                                
-                            # Better On/Sus implementation via tracking
-                            notes_str = ",".join(notes_info)
-                            
-                            slice_str = f"@{offset}:[Chord: {chord_name}][Intervals: {intervals_str}][Notes: {notes_str}]"
-                            slice_strings.append(slice_str)
-                            
-                    # Refined Over/Sus tracking logic using the original measure
-                    active_notes = {} # {pitchStr: end_time}
-                    slice_strings = [] # Rebuild using actual measure parsing for accurate On/Sus
-                    
-                    # Group by offset
-                    offsets_dict = {}
-                    for element in m_chordified.flatten().getElementsByClass('Chord'):
-                        offset = float(element.offset)
-                        if offset not in offsets_dict:
-                            offsets_dict[offset] = element
-                    
-                    for offset in sorted(offsets_dict.keys()):
-                        c = offsets_dict[offset]
-                        
-                        if not c.pitches:
-                            continue
-                            
-                        # Sort pitches from low to high
-                        sorted_pitches = sorted(c.pitches)
-                        bass_pitch = sorted_pitches[0]
-                        
-                        # Optionally extract standard chord and roman numeral
-                        chord_prefix = ""
-                        if self.config.note_format.show_chord_name:
-                            try:
-                                chord_sym = music21.harmony.chordSymbolFigureFromChord(c)
-                                if chord_sym and chord_sym != 'Chord Symbol Cannot Be Identified' and 'pedal' not in chord_sym.lower():
-                                    try:
-                                        rn = music21.roman.romanNumeralFromChord(c, key_sig).figure
-                                        chord_prefix = f"[{rn}({chord_sym})] "
-                                    except:
-                                        chord_prefix = f"[{chord_sym}] "
-                            except:
-                                pass
-                                
-                        notes_str = "+".join([p.nameWithOctave for p in sorted_pitches])
-                        
-                        interval_names = []
-                        if len(sorted_pitches) > 1:
-                            for p in sorted_pitches[1:]:
-                                try:
-                                    interval = music21.interval.Interval(bass_pitch, p).name
-                                    interval_names.append(interval)
-                                except:
-                                    pass
-                                    
-                        interval_str = f"({','.join(interval_names)})" if interval_names else ""
-                        
-                        slice_strings.append(f"{chord_prefix}{offset}:{notes_str}{interval_str}")
-                        
-                        # Calculate Melodic Motion (simplified based on top voice per slice)
-                        top_pitch = sorted_pitches[-1].midi
-                        if prev_top_pitch is not None:
-                            if top_pitch > prev_top_pitch: motion_count["Up"] += 1
-                            elif top_pitch < prev_top_pitch: motion_count["Down"] += 1
-                            else: motion_count["Static"] += 1
-                        prev_top_pitch = top_pitch
-
-                    # Calculate Melodic Motion
-                    motion = "Static"
-                    if motion_count["Up"] > motion_count["Down"]: motion = "Up"
-                    elif motion_count["Down"] > motion_count["Up"]: motion = "Down"
-
-                    if not slice_strings:
-                        slice_strings = ["Rest"]
-                        
-                    # Handle prepended meta tags
-                    meta_tags = []
-                    for n in notes_in_m:
-                        if n.startswith("[Key_Change:") or n.startswith("[TimeSig_Change:"):
-                            meta_tags.append(n)
-                    
-                    meta_str = " ".join(meta_tags) + " " if meta_tags else ""
-                    # Omit motion if empty
-                    slices_combined = " | ".join(slice_strings)
-                    tracks_data[part_name][f"M{m_number}"] = f"{meta_str}{slices_combined}"
-
+            t1 = time.time()
+            
+            # Filter output based on config to save tokens
+            final_tracks_data = {}
+            if self.config.show_global_merged_chords and "Global_Merged_Chords" in tracks_data:
+                final_tracks_data["Global_Merged_Chords"] = tracks_data["Global_Merged_Chords"]
+            
+            if self.config.show_individual_instruments:
+                for k, v in tracks_data.items():
+                    if k != "Global_Merged_Chords":
+                        final_tracks_data[k] = v
+            
             return {
                 "estimated_key": str(key_sig),
                 "mode": key_sig.mode,
@@ -595,7 +563,8 @@ class Music21MidiAnalyzer(IMidiAnalyzer):
                 "note_count": total_notes,
                 "density": round(density, 2),
                 "chord_progression_by_8m": chord_progression_by_8m,
-                "detailed_tracks": tracks_data
+                "detailed_tracks": final_tracks_data,
+                "analysis_time_sec": round(t1 - t0, 3)
             }
 
         except Exception as e:
@@ -620,6 +589,7 @@ class Music21MidiAnalyzer(IMidiAnalyzer):
             preview_str = " | ".join([f"{m_num}: {notes}" for m_num, notes in list(measures.items())[:5]])
             preview = preview_str + " ... (truncated)" if len(measures) > 5 else preview_str
             print(f"\n🎷 Instrument: {instr}\n   => {preview}")
+        print(f"\n⏱️  MIDI Parsing Time: {data.get('analysis_time_sec', 0)} seconds")
         print("="*60 + "\n")
 
 
@@ -648,6 +618,11 @@ class GoogleGenAIService(ILLMService):
                     temperature=self.config.llm_temperature
                 )
             )
+            # Print token usage
+            if response.usage_metadata:
+                usage = response.usage_metadata
+                print(f"   [Tokens] Input: {usage.prompt_token_count} | Output: {usage.candidates_token_count} | Total: {usage.total_token_count}")
+            
             return response.text
         except Exception as e:
             return f"[!] LLM failed: {e}"
@@ -693,11 +668,12 @@ class MusicAnalysisApp:
             return
             
         # 2. Save JSON Data
-        if not os.path.exists(self.config.output_dir):
-            os.makedirs(self.config.output_dir)
-        
         base_name = os.path.splitext(os.path.basename(file_path))[0]
-        json_path = os.path.join(self.config.output_dir, f"{base_name}_analysis.json")
+        output_dir = os.path.join(self.config.output_dir, base_name)
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        
+        json_path = os.path.join(output_dir, f"{base_name}_analysis.json")
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(midi_data, f, ensure_ascii=False, indent=4)
         print(f"💾 [Data Saved] Analyzed MIDI data saved to: {json_path}")
@@ -735,14 +711,19 @@ class MusicAnalysisApp:
         print("\n🧠 [AI 音樂大師分析報告] 🧠")
         print("正在分析中...\n" + "-" * 60)
         
+        t0_llm = time.time()
         analysis_report = self.llm_service.generate_analysis(self.history)
+        t1_llm = time.time()
+        llm_time = round(t1_llm - t0_llm, 3)
+        
         self.history.add_message("model", analysis_report)
         
         print(analysis_report)
         print("-" * 60)
+        print(f"⏱️  LLM 回覆時間 (LLM Response Time): {llm_time} 秒\n")
 
         # 7. Save AI Analysis Report
-        report_path = os.path.join(self.config.output_dir, f"{base_name}_analysis_report.md")
+        report_path = os.path.join(output_dir, f"{base_name}_analysis_report.md")
         with open(report_path, "w", encoding="utf-8") as f:
             f.write(f"# MIDI Music Analysis Report: {base_name}\n\n")
             f.write(analysis_report)
@@ -763,9 +744,15 @@ class MusicAnalysisApp:
                     
                 self.history.add_message("user", user_msg)
                 print("[AI]: 正在思考...")
+                
+                t0_chat = time.time()
                 reply = self.llm_service.generate_analysis(self.history)
+                t1_chat = time.time()
+                chat_time = round(t1_chat - t0_chat, 3)
+                
                 self.history.add_message("model", reply)
                 print(f"\n🧠 {reply}")
+                print(f"\n⏱️  LLM 回覆時間: {chat_time} 秒")
                 
             except KeyboardInterrupt:
                 print("\n[!] 取消對話，結束聊天。")
