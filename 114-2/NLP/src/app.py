@@ -11,6 +11,10 @@ from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 import time
 from typing import List, Dict, Any
+from pathlib import Path
+
+# Detect Project Root (Parent of src/)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 import music21
 # Import the new Google GenAI SDK
@@ -19,7 +23,8 @@ from google.genai import types
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-load_dotenv()
+# Load environment from project root
+load_dotenv(PROJECT_ROOT / ".env")
 
 # ==========================================
 # 0. SOLID Entities (Note Formatting)
@@ -91,8 +96,8 @@ class AppConfig:
     user_prompt: str = os.environ.get("USER_PROMPT", "請根據上述全局數據以及『每一軌』的細節音符，給予詳盡作曲手法、真實和弦判讀。務必嚴格遵守和弦記號規範！請不要只列出籠統的『M1-8』，必須明確指出『哪一個具體小節 (如 M14)』使用了什麼特定的作曲手法 (如模進 Sequence、持續音 Pedal)。所有和弦請附上級數 (如 Am (I), G (VII))。")
     api_key: str = os.environ.get("GOOGLE_API_KEY", "[ENCRYPTION_KEY]")
     llm_temperature: float = 0.3 
-    midi_dir: str = "midi"
-    output_dir: str = "output"
+    midi_dir: str = str(PROJECT_ROOT / "midi")
+    output_dir: str = str(PROJECT_ROOT / "output")
     default_midi_name: str = "default_song.mid"
     # Added options to reduce LLM token cost upon user request
     show_global_merged_chords: bool = False
@@ -162,6 +167,7 @@ class AppConfig:
         "二、具體結構與織體 (精確到小節)：列出明確的段落劃分與關鍵小節的互動關係。\n"
         "三、核心分析 (附帶級數)：結合垂直音程與水平旋律，分析其具體的作曲手法（精確到小節號），並使用級數標示和弦。\n"
         "四、藝術評價：這首作品在該風格下表現出的創意與藝術價值。"
+        "請使用繁體中文輸出報告，但是和弦名稱、音階名稱、調式名稱、作曲手法名稱等專業術語請使用英文。"
     )
 
 # ==========================================
@@ -224,7 +230,7 @@ class WebVisualMidiPlayer(IMidiPlayer):
         self.port = port
         self.server = None
         self.server_thread = None
-        self.html_file = "midi_player.html"
+        self.html_file = str(PROJECT_ROOT / "midi_player.html")
 
     def _generate_html(self, midi_filename: str):
         html_content = f"""<!DOCTYPE html>
@@ -294,7 +300,10 @@ class WebVisualMidiPlayer(IMidiPlayer):
             f.write(html_content)
 
     def _create_server(self):
+        root_dir = str(PROJECT_ROOT)
         class Handler(http.server.SimpleHTTPRequestHandler):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, directory=root_dir, **kwargs)
             def log_message(self, format, *args):
                 pass # Suppress logs to keep console clean
 
@@ -304,9 +313,8 @@ class WebVisualMidiPlayer(IMidiPlayer):
 
     def play(self, file_path: str):
         try:
-            # Use relative path so the local server can find it without copying
-            current_dir = os.getcwd()
-            rel_midi_path = os.path.relpath(file_path, current_dir)
+            # Use relative path from PROJECT_ROOT so the local server can find it
+            rel_midi_path = os.path.relpath(file_path, PROJECT_ROOT)
             
             self._generate_html(rel_midi_path)
 
@@ -515,10 +523,17 @@ class Music21MidiAnalyzer(IMidiAnalyzer):
                 tracks_data["Global_Merged_Chords"][f"M{m_number}"] = f"{meta_str}{slices_combined}"
                 
             # 2. Individual Instruments
-            for part in tqdm(parts, desc="Analyzing Instruments"):
-                part_name = part.partName or "Unknown_Instrument"
-                if part_name not in tracks_data:
-                    tracks_data[part_name] = {}
+            for i, part in enumerate(tqdm(parts, desc="Analyzing Instruments")):
+                base_part_name = part.partName or f"Unknown_Instrument_{i+1}"
+                
+                # Ensure unique track names to prevent overwriting
+                part_name = base_part_name
+                suffix = 1
+                while part_name in tracks_data:
+                    part_name = f"{base_part_name}_{suffix}"
+                    suffix += 1
+                    
+                tracks_data[part_name] = {}
                 
                 measures = list(part.getElementsByClass('Measure'))
                 for measure in tqdm(measures, desc=f"Track: {part_name[:15]}", leave=False):
