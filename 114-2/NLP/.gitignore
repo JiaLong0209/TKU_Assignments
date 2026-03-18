@@ -34,5 +34,3 @@ poetry.lock
 # (Keep poetry.lock in git if it's an application, exclude if it's a library)
 # For this project, we'll keep it as it's an app.
 
-# Output
-output/
