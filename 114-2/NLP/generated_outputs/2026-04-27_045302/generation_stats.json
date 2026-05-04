@@ -1,0 +1,18 @@
+{
+  "total_prompts": 1,
+  "successful_generations": 1,
+  "failed_generations": 0,
+  "generation_times": [],
+  "output_files": [
+    "generated_outputs/2026-04-27_045302/20260427_045305_prompt_1/gen_1.mid"
+  ],
+  "total_time": 1.9427378177642822,
+  "average_time": 0,
+  "config": {
+    "model": "llm-midi-analyzer/models/MIDI-LLM",
+    "temperature": 1.0,
+    "top_p": 0.98,
+    "max_tokens": 100,
+    "n_outputs": 1
+  }
+}

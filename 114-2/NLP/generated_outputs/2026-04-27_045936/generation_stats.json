@@ -1,0 +1,20 @@
+{
+  "total_prompts": 1,
+  "successful_generations": 3,
+  "failed_generations": 0,
+  "generation_times": [],
+  "output_files": [
+    "generated_outputs/2026-04-27_045936/20260427_045940_prompt_1/gen_1.mid",
+    "generated_outputs/2026-04-27_045936/20260427_045940_prompt_1/gen_2.mid",
+    "generated_outputs/2026-04-27_045936/20260427_045940_prompt_1/gen_3.mid"
+  ],
+  "total_time": 38.94915747642517,
+  "average_time": 0,
+  "config": {
+    "model": "llm-midi-analyzer/models/MIDI-LLM",
+    "temperature": 1.0,
+    "top_p": 0.98,
+    "max_tokens": 2046,
+    "n_outputs": 3
+  }
+}
